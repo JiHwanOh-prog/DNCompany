@@ -1,32 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <a href="https://www.flaticon.com/kr/free-icons/" title="검색 아이콘"
-      >검색 아이콘 제작자: Kiranshastry - Flaticon</a
-    > -->
-    <!-- css 파일 적용 -->
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/font.css" />
-    <link rel="stylesheet" href="../css/pet-service.css" />
-    <script
-      defer
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc"
-    ></script>
+    <!-- css -->
+    <link rel="stylesheet" th:href="@{/css/common.css}" />
+    <link rel="stylesheet" th:href="@{/css/font.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/fragment/footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/map/pet-service.css}" />
 
-    <script
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc&libraries=services"
-    ></script>
-    <!-- <script
-      defer
-      type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc&libraries=services,clusterer,drawing"
-    ></script> -->
-    <script defer src="../js/pet-service.js"></script>
-
+    <!-- js -->
+    <script defer type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc&libraries=services,clusterer"></script>
+    <script th:src="@{/js/map/pet-service.js}"></script>
     <title>Document</title>
   </head>
   <body>
@@ -51,10 +38,7 @@
                       placeholder="동물병원"
                     />
                     <button type="submit">
-                      <img
-                        src="../img/KakaoTalk_20241210_150337503.png"
-                        alt="검색하기"
-                      />
+                      <img th:src="@{/images/map/search-icon.png}" alt="검색하기" />
                     </button>
                   </div>
                 </form>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,17 +9,17 @@
     <link rel="stylesheet" th:href="@{/css/fragment/header.css}" />
     <link rel="stylesheet" th:href="@{/css/fragment/footer.css}" />
     <link rel="stylesheet" th:href="@{/css/map/hospital.css}" />
+
+    <!-- js -->
     <script defer type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc"></script>
-
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc&libraries=services"></script>
-    <script defer th:src="@{/js/map/hospital.js}"></script>
-
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ede54e3725e1cc3bd6d5cf466cb852dc&libraries=services,clusterer"></script>
+    <script th:src="@{/js/map/hospital.js}"></script>
     <title>Document</title>
   </head>
   <body>
     <!-- 홈페이지 전체 사이즈 -->
     <div class="container">
-      <header th:include></header>
+      <header></header>
       <div class="main-wrap">
         <main>
           <p>동물 병원 정보</p>
@@ -38,7 +38,7 @@
                       placeholder="동물병원"
                     />
                     <button type="submit">
-                      <img src="../img/search-icon.png" alt="검색하기" />
+                      <img th:src="@{/images/map/search-icon.png}" alt="검색하기" />
                     </button>
                   </div>
                 </form>
