@@ -297,15 +297,11 @@
                     REVIEW_AI_ASSESSMENT
                 FROM (
                          SELECT
-                             R.REVIEW_ID,
-                             R.REVIEW_TITLE,
-                             R.REVIEW_CONTENT,
-                             R.REVIEW_CREATED_AT,
-                             R.USERS_ID,
-                             R.REVIEW_STAR_RATING,
-                             R.REVIEW_AI_ASSESSMENT
+                             R.REVIEW_ID, R.REVIEW_TITLE, R.REVIEW_CONTENT, R.REVIEW_CREATED_AT, R.USERS_ID, R.REVIEW_STAR_RATING, R.REVIEW_AI_ASSESSMENT,
+                             HO.HELP_OFFER_ID, HO.USERS_ID AS TO_USERS_ID
                          FROM REVIEW R
-                         WHERE R.USERS_ID = #{usersId}
+                                  JOIN HELP_OFFER HO ON R.HELP_OFFER_ID = HO.HELP_OFFER_ID
+                         WHERE HO.USERS_ID = #{usersId}
                          ORDER BY R.REVIEW_ID DESC
                      )
         <![CDATA[ WHERE ROWNUM <= #{page.page} * #{page.size} ]]>
