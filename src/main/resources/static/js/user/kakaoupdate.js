@@ -550,8 +550,6 @@ function removeActive() {
 
 // 생년월일
 // 숫자만 허용하는 정규식
-
-
 // 각 입력 필드 가져오기
 const elInputYear = document.querySelector("#birthYear");
 const elInputMonth = document.querySelector("#birthMonth");
@@ -568,12 +566,14 @@ function allowNumbersOnly(event) {
 }
 
 // 입력값 검사 함수 (범위 제한)
-function limitValue(inputField, min, max) {
+function limitValue(inputField, min, max, defaultValue) {
   let value = parseInt(inputField.value, 10);
-  if (value < min) {
-    inputField.value = min.toString().padStart(inputField.placeholder.length, "0"); // 최소값으로 설정
-  } else if (value > max) {
-    inputField.value = max.toString().padStart(inputField.placeholder.length, "0"); // 최대값으로 설정
+
+  // 숫자인 경우만 검사
+  if (!isNaN(value)) {
+    if (value < min || value > max) {
+      inputField.value = defaultValue.toString().padStart(inputField.placeholder.length, "0"); // 기본값으로 설정
+    }
   }
 }
 
@@ -597,38 +597,41 @@ function limitValue(inputField, min, max) {
     ) {
       e.target.value = e.target.value.slice(0, 2); // 2자리로 제한
     }
-
-    // 입력값 범위 제한
-    if(e.target === elInputYear) {
-      limitValue(e.target, 1500, 2300);
-    }
-    if (e.target === elInputMonth) {
-      limitValue(e.target, 1, 12); // 01부터 12까지
-    }
-    if (e.target === elInputDay) {
-      limitValue(e.target, 1, 31); // 01부터 31까지
-    }
   });
 
-  // 포커스 해제 시 0으로 채우기 (예: 1 -> 01)
+  // 포커스 해제 시 값 자동 보정
   inputField.addEventListener("blur", function (e) {
     if (e.target.value.trim() !== "") {
       const minLength = e.target === elInputYear ? 4 : 2;
+
+      // 입력값을 최소 길이에 맞게 패딩
       e.target.value = e.target.value.padStart(minLength, "0");
+
+      // 입력값 범위 검사 및 수정
+      if (e.target === elInputYear) {
+        limitValue(e.target, 1500, 2030, 1500); // 연도: 1500~2030
+      }
+      if (e.target === elInputMonth) {
+        limitValue(e.target, 1, 12, 1); // 월: 01~12, 기본값 01
+      }
+      if (e.target === elInputDay) {
+        limitValue(e.target, 1, 31, 1); // 일: 01~31, 기본값 01
+      }
     }
   });
 });
 
 function updateBirthDate() {
   // 각각의 입력 필드에서 값을 가져옴
-  var year = elInputYear.value;
-  var month = elInputMonth.value;
-  var day = elInputDay.value;
+  const year = elInputYear.value;
+  const month = elInputMonth.value;
+  const day = elInputDay.value;
 
   // 각 값이 빈 값이 아닐 경우만 진행
   if (year && month && day) {
     // 날짜 포맷을 YYYY-MM-DD로 합침
-    var birthDate = year + "-" + month.padStart(2, '0') + "-" + day.padStart(2, '0');
+    const birthDate =
+        year + "-" + month.padStart(2, "0") + "-" + day.padStart(2, "0");
 
     // hidden input 필드에 birthDate 값 저장
     document.getElementById("birthDate").value = birthDate;
