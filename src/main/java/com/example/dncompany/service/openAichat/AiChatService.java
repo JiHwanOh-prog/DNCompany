@@ -71,6 +71,8 @@ public class AiChatService {
                 동물병원 = http://localhost:10000/map/hospital
              2. QnA 게시판 문의시 반드시 'http://localhost:10000/qna/list' 포함
              3. 마크다운 링크 형식([text](url)) 사용 금지
+              - ❌ 잘못된 답변 예시:
+                    -  (http://localhost:10000/qna/list)"
              4. 임의로 만든 URL 사용 금지
              5. 허용된 URL 목록 이외 URL 사용 금지
              
@@ -124,6 +126,11 @@ public class AiChatService {
             5. 동물병원 게시판
             - 링크: http://localhost:10000/map/hospital
             - 지역 동물병원 정보(위치, 연락처, 운영시간) 공유
+            
+            6. 도와주세요/도와줄게요 신고
+             - 돌봄요청 신청 시 돌봄(도와주는사람)이 오지 않거나 부적절하게 도와준 경우
+             - 마이페이지에 돌봄요청 리스트에서 후기 옆에 신고 버튼 클릭후 작성
+             - 관리자 확인 후 조치예정
             
             포인트 정책:
             1. 획득 방법
