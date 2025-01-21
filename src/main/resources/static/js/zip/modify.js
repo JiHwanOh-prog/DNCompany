@@ -13,6 +13,11 @@ $('#zipContent').summernote({
     ]
 });
 
+const existingContent = document.querySelector('#zipContent').getAttribute('th:utext');
+if (existingContent) {
+    $('#zipContent').summernote('code', existingContent);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const $title = document.querySelector('.question_titleInput');
     const $content = document.querySelector('#zipContent');

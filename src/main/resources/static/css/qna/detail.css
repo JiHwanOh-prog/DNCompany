@@ -1,404 +1,402 @@
 .qaDetail_qaDetailContainer {
-  margin: 100px 0;
-  width: 100%;
+    margin: 100px 0;
+    width: 100%;
 }
 
 .qaDetail_qaDetailContent {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 0 27px;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 27px;
 }
 
 .qaDetail_qaDetailQuestion {
-  padding-bottom: 22px;
+    padding-bottom: 22px;
 }
 
 .qaList_qaListTitle {
-  font-size: 20px;
-  padding: 21px 0 13px;
+    font-size: 20px;
+    padding: 21px 0 13px;
 }
 
 .qaDetail_labelListWrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .mylabel_activeLabel {
-  height: 22px;
-  font-size: 12px;
-  text-align: center;
-  background-color: lightgray;
-  color: black;
-  border: none;
-  border-radius: 10px;
-  display: inline-block;
-  padding: 4px 15px;
+    height: 22px;
+    font-size: 12px;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 4px 15px;
 }
 
 .qaDetail_qaDetailTop {
-  margin: 10px 0;
-  font-family: "Pretendard-Regular";
-  letter-spacing: 2px;
-  font-size: 22px;
-  font-weight: 400;
+    margin: 10px 0;
+    font-family: "Pretendard-Regular";
+    letter-spacing: 2px;
+    font-size: 22px;
+    font-weight: 400;
 }
 
 .qaDetail_qaDetailText {
-  white-space: pre-line;
-  overflow-wrap: break-word;
-  border-top: 1px solid #e4e4e6;
-  padding: 30px 0;
-  font-size: 15px;
-  line-height: 180%;
-  letter-spacing: 1px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    border-top: 1px solid #e4e4e6;
+    padding: 30px 0;
+    font-size: 15px;
+    line-height: 180%;
+    letter-spacing: 1px;
 }
 
 .qaDetail_qaDetailImgBox {
-  margin: 35px 0 70px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
+    margin: 35px 0 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
 }
 
 .img_verticalImage {
-  display: block;
-  max-width: 445px;
-  max-height: 100%;
-  margin: 0 auto;
+    display: block;
+    max-width: 445px;
+    max-height: 100%;
+    margin: 0 auto;
 }
 
 /* 추천 버튼 */
 .qaDetail_qaDetailThumbBtnWrapper {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .thumbButton_thumbButtonWrapper {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .thumbButton_thumbButtonContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
 /* 작성자 정보 */
 .qaDetail_qaDetailInfo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .qaDetail_qaDetailBar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .qaDetail_infoWrapper {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .qaDetail_infoWrapper img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
 }
 
 .qaDetail_qaDetailUser {
-  font-size: 16px;
-  font-weight: 700;
-  color: black;
+    font-size: 16px;
+    font-weight: 700;
+    color: black;
 }
 
 .qaDetail_qaDetailDate {
-  font-size: 13px;
-  color: #868688;
+    font-size: 13px;
+    color: #868688;
 }
 
 /* 작성글 삭제/수정 버튼 */
 .delete_modify_Btn {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 40px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 40px;
 }
 
 /* 작성글 삭제 버튼 */
 .delete_Btn {
-  display: flex;
-  align-items: center;
-  margin-right: 40px;
-  flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    flex-direction: row-reverse;
 }
 
 .delete_Btn_item {
-  font-family: "Ownglyph_ParkDaHyun";
-  font-size: 20px;
-  letter-spacing: 1px;
-  position: absolute;
-  display: flex;
-  border: 1px solid #fffdf4;
-  color: black;
-  padding: 0 10px;
-  border-radius: 15px;
-  background-color: lightcoral;
-  line-height: 34px;
-  text-align: center;
-  cursor: pointer;
+    font-family: Ownglyph_ParkDaHyun;
+    font-size: 20px;
+    margin-top: 50px;
+    letter-spacing: 1px;
+    position: absolute;
+    border: 1px solid rgb(95, 0, 128);
+    color: #fff;
+    padding: 0 10px;
+    border-radius: 15px;
+    background-color: rgb(95, 0, 128);
+    line-height: 34px;
+    cursor: pointer;
 }
 
 /* 작성글 수정 버튼 */
 .modify_Btn {
-  display: flex;
-  align-items: center;
-  margin-right: 40px;
-  flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    flex-direction: row-reverse;
 }
 
 .modify_Btn_item {
-  font-family: Ownglyph_ParkDaHyun;
-  font-size: 20px;
-  letter-spacing: 1px;
-  position: absolute;
-  display: flex;
-  border: 1px solid #fffdf4;
-  color: black;
-  padding: 0 12px;
-  border-radius: 15px;
-  background-color: rgb(189, 118, 255);
-  line-height: 34px;
-  text-align: center;
-  cursor: pointer;
+    font-family: Ownglyph_ParkDaHyun;
+    font-size: 20px;
+    letter-spacing: 1px;
+    position: absolute;
+    display: flex;
+    border: 1px solid #fffdf4;
+    color: black;
+    padding: 0 12px;
+    border-radius: 15px;
+    background-color: rgb(189, 118, 255);
+    line-height: 34px;
+    text-align: center;
+    cursor: pointer;
 }
 
 /* 경계선 */
 .qaDetail_qaDetailBar {
-  margin-bottom: 30px;
-  width: 100%;
-  height: 6px;
-  background-color: #f2f2f2;
+    margin-bottom: 30px;
+    width: 100%;
+    height: 6px;
+    background-color: #f2f2f2;
 }
 
 /* 답글 */
 .qaDetail_qaDetailAnswerWrapper {
-  padding: 30px 0 58px;
+    padding: 30px 0 58px;
 }
 
 .qaDetail_qaDetailTotal {
-  font-family: Pretendard-Regular;
-  letter-spacing: 2px;
-  font-size: 20px;
-  margin-bottom: 25px;
+    font-family: Pretendard-Regular;
+    letter-spacing: 2px;
+    font-size: 20px;
+    margin-bottom: 25px;
 }
 
 
 /* 작성 박스 */
 .answer_qaAnswerInputWrapper {
-  margin-top: 10px;
-  padding: 15px;
-  border: 2px solid #e4e4e6;
-  border-radius: 6px;
+    margin-top: 10px;
+    padding: 15px;
+    border: 2px solid #e4e4e6;
+    border-radius: 6px;
 }
 
 .answer_qaAnswerInputWrapper textarea {
-  font-family: inherit;
-  margin-top: 10px;
-  width: 100%;
-  height: 50px;
-  resize: none;
-  border: none;
-  font-size: 14px;
+    font-family: inherit;
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    resize: none;
+    border: none;
+    font-size: 14px;
 }
 
 .answer_inputBtnWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 .answer_questionImgContainer {
-  display: flex;
-  gap: 7px;
+    display: flex;
+    gap: 7px;
 }
 
 .answer_fileUploadWrapper {
-  display: none;
+    display: none;
 }
 
 .answer_photoBtn {
-  letter-spacing: 1px;
-  position: relative;
-  font-size: 12px;
-  border-radius: 10px;
-  border: none;
-  padding: 6px 20px 6px 35px;
-  background-color: #f6f6f9;
-  color: #868688;
+    letter-spacing: 1px;
+    position: relative;
+    font-size: 12px;
+    border-radius: 10px;
+    border: none;
+    padding: 6px 20px 6px 35px;
+    background-color: #f6f6f9;
+    color: #868688;
 }
 
 .answer_photoBtn img {
-  position: absolute;
-  top: 6px;
-  left: 16px;
+    position: absolute;
+    top: 6px;
+    left: 16px;
 }
 
 .answer_submitBtn {
-  letter-spacing: 7px;
-  font-family: Ownglyph_ParkDaHyun;
-  position: relative;
-  width: 81px;
-  height: 26px;
-  font-size: 17px;
-  border-radius: 10px;
-  border: none;
-  margin-left: 10px;
-  background-color: rgb(189, 118, 255);
-  color: #fff;
+    letter-spacing: 7px;
+    font-family: Ownglyph_ParkDaHyun;
+    position: relative;
+    width: 81px;
+    height: 26px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 10px;
+    background-color: rgb(189, 118, 255);
+    color: #fff;
 }
 
 /* 댓글 리스트 */
 .comment_qaDetailComment {
-  border-bottom: 1px solid #e0e0e0;
-  padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
 }
 
 .comment_qaCommentIdWrapper {
-  /* margin-bottom: 21px; */
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  /* justify-content: space-between; */
-  font-size: 13px;
+    /* margin-bottom: 21px; */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* justify-content: space-between; */
+    font-size: 13px;
 }
 
 /* 댓글 작성자 */
 .comment_qaCommentAuthor {
-  display: flex;
-  gap: 5px;
-  align-items: center;
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
 .comment_qaCommentAuthor img {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
 }
 
 .comment_qaCommentId {
-  color: black;
-  font-weight: 600;
+    color: black;
+    font-weight: 600;
 }
 
 .comment_qaCommentDate {
-  color: #868688;
+    color: #868688;
 }
 
 .comment_qaDetailImgNone {
-  display: none;
+    display: none;
 }
 
 /* 댓글 수정/삭제 아이콘 */
 .comment_edit_delete {
-  display: flex;
-  gap: 5px;
+    display: flex;
+    gap: 5px;
 }
 
 .comment_edit_delete img {
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
 }
 
 /* 댓글 내용 */
 .comment_qaComment {
-  white-space: pre-wrap;
-  margin: 20px 0;
-  word-wrap: break-word;
-  line-height: 140%;
+    white-space: pre-wrap;
+    margin: 20px 0;
+    word-wrap: break-word;
+    line-height: 140%;
 }
 
 /* 댓글 하단 */
 .comment_commentInfo {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 /* 대댓글 버튼 */
 .comment_qaDetailCommentBtn {
-  height: 26px;
-  font-size: 12px;
-  text-align: center;
-  background-color: #f6f6f9;
-  color: #868688;
-  border: none;
-  border-radius: 21px;
-  display: inline-block;
-  padding: 4px 20px;
-  margin-right: 6px;
+    height: 26px;
+    font-size: 12px;
+    text-align: center;
+    background-color: #f6f6f9;
+    color: #868688;
+    border: none;
+    border-radius: 21px;
+    display: inline-block;
+    padding: 4px 20px;
+    margin-right: 6px;
 }
-
 
 
 /* 상세글 이동 */
 .prev_next_btns {
-  /* height: 100%; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    /* height: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .prev_next_btns .button {
-  background-color: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #dcdcdc;
-  display: inline-block;
-  cursor: pointer;
-  color: #666666;
-  font-size: 18px;
-  padding: 6px 90px;
-  text-decoration: none;
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    font-size: 18px;
+    padding: 6px 90px;
+    text-decoration: none;
 }
 
 /* 댓글 수정 css */
 .edit__container {
-  display: flex;
-  gap: 5px;
-  margin-top: 10px;
-  padding: 15px;
-  border: 2px solid #e4e4e6;
-  border-radius: 6px;
-
-  .edit__content {
-    width: 90%;
-    /*margin-top: 10px;*/
-    height: 50px;
-    resize: none;
-    border: none;
-    padding: 5px;
-  }
-
-  .edit__edit-btn, .edit__cancel-btn {
-    margin-top: 15px;
-    margin-right: 10px;
     display: flex;
-    width: 50px;
-    height: 25px;
-    justify-content: center;
-    align-items: center;
-  }
+    gap: 5px;
+    margin-top: 10px;
+    padding: 15px;
+    border: 2px solid #e4e4e6;
+    border-radius: 6px;
+
+    .edit__content {
+        width: 90%;
+        /*margin-top: 10px;*/
+        height: 50px;
+        resize: none;
+        border: none;
+        padding: 5px;
+    }
+
+    .edit__edit-btn, .edit__cancel-btn {
+        margin-top: 15px;
+        margin-right: 10px;
+        display: flex;
+        width: 50px;
+        height: 25px;
+        justify-content: center;
+        align-items: center;
+    }
 }
