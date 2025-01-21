@@ -192,7 +192,7 @@ import * as likeApi from './modules/likeApi.js'
             html += `
          <div class="comment_qaDetailComment" data-answer-id="${answer.zipAnswerId}">
             <div class="comment_qaCommentIdWrapper">
-                <div class="comment_qaCommentId">${answer.nickname}</div>
+                <div class="comment_qaCommentId">${answer.loginId}</div>
                 ${answer.usersId === loginUsersId ? `
                 <div class="comment_edit_delete">
                     <div class="comment_delete">
