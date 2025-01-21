@@ -108,7 +108,7 @@ public class ImageUploadController {
             String contentType = Files.probeContentType(saveFile.toPath());
             if (contentType != null && contentType.startsWith("image")) {
                 Thumbnails.of(saveFile)
-                        .size(300, 200)
+                        .size(570, 224)
                         .toFile(new File(savePath + "/th_" + saveFileName));
             }
 
