@@ -34,6 +34,9 @@ public interface HelpMapper {
     // 신청 가능 여부
     int checkHelpOfferExists(Long helpId);
 
+    // 특정 회원이 이미 신청한 help 여부
+    int checkHelpOfferExistsAlready(Long helpId, Long usersId);
+
 
     // 전체 게시글 수 조회
     int getTotalCount();

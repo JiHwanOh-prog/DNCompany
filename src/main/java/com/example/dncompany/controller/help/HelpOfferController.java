@@ -21,7 +21,6 @@ public class HelpOfferController {
      * 도와드려요(도움 신청) 요청을 처리하는 메서드
      * @param helpId URL 경로에서 추출한 게시글 ID
      * @param usersId 세션에서 가져온 사용자 ID(로그인 여부 확인용)
-     * @param session HTTP 세션 객체
      * @return ResponseEntity로 처리 결과를 JSON 형태로 반환
      */
     @PostMapping("/{helpId}")

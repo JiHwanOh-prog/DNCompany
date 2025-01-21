@@ -21,8 +21,12 @@ public class HelpOfferService {
     // 도움 신청하기
     public void registerHelpOffer(Long helpId, Long usersId) {
         // 이미 신청된 게시글인지 확인
-        if(helpMapper.checkHelpOfferExists(helpId)>1){
+        if(helpMapper.checkHelpOfferExists(helpId)>0){
             throw new IllegalStateException("이미 다른 사용자가 신청한 게시글 입니다.");
+        }
+
+        if(helpMapper.checkHelpOfferExistsAlready(helpId, usersId) > 0) {
+            throw new IllegalStateException("이미 신청한 게시글 입니다.");
         }
 
         log.info("========== 도움 신청 서비스 시작 ==========");
