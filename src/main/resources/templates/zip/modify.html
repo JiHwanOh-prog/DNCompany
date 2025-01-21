@@ -28,6 +28,7 @@
             <div class="question_questionContainer">
                 <div class="question_questionContent">
                     <form th:action="@{/zip/modify}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="zipId" th:value="${board.zipId}">
                         <!-- 카테고리 선택 -->
                         <span class="question_questionCategory">반려동물 카테고리</span>
                         <span class="question_questionMark">*</span>
@@ -38,7 +39,7 @@
                                         name="zipPetCategory"
                                         id="DOG"
                                         value="DOG"
-                                        checked
+                                        th:checked="${'DOG'.equals(board.zipPetCategory)}"
                                 />
                                 <label for="DOG">강아지</label>
                             </div>
@@ -48,6 +49,7 @@
                                         name="zipPetCategory"
                                         id="CAT"
                                         value="CAT"
+                                        th:checked="${'CAT'.equals(board.zipPetCategory)}"
                                 />
                                 <label for="CAT">고양이</label>
                             </div>
@@ -57,6 +59,7 @@
                                         name="zipPetCategory"
                                         id="SMALL"
                                         value="SMALL"
+                                        th:checked="${'SMALL'.equals(board.zipPetCategory)}"
                                 />
                                 <label for="SMALL">소동물</label>
                             </div>
@@ -66,6 +69,7 @@
                                         name="zipPetCategory"
                                         id="OTHER"
                                         value="OTHER"
+                                        th:checked="${'OTHER'.equals(board.zipPetCategory)}"
                                 />
                                 <label for="OTHER">기타</label>
                             </div>
@@ -81,7 +85,7 @@
                                     placeholder="제목을 입력해주세요"
                                     class="question_titleInput"
                                     name="zipTitle"
-                                    value
+                                    th:value="${board.zipTitle}"
                             />
                             <!-- 박스 하단 여백 -->
                             <div class="question_alertText"></div>
@@ -94,6 +98,7 @@
                         class="question_questionInput"
                         id="zipContent"
                         name="zipContent"
+                        th:utext="${board.zipContent}"
                 ></textarea>
                             <!-- 박스 하단 여백 -->
                             <div class="question_alertText"></div>
