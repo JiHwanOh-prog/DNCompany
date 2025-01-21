@@ -27,8 +27,8 @@
           <!-- 상단 섹션 -->
           <div class="detail-header">
             <div class="tags">
-             <span class="tag" th:classappend="${isRecruiting} ? 'tag-orange' : 'tag-green'"
-                   th:text="${isRecruiting} ? '모집 마감' : '모집중'">
+             <span class="tag" th:classappend="${isAccepted} ? 'tag-orange' : 'tag-green'"
+                   th:text="${isAccepted} ? '모집 마감' : '모집중'">
     </span>
             <h1 th:text="${helpDetail.helpTitle}">우리 댕댕이 산책 도와주실 분 구해요</h1>
             <div class="header-info">
@@ -113,7 +113,11 @@
 
           <!-- 신청하기 버튼 -->
           <div class="action-buttons">
-            <button class="apply-button" th:onclick="|applyForCare(${helpDetail.helpId})|">돌봄 신청하기</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'AVAILABLE'}"
+                    th:onclick="|applyForCare(${helpDetail.helpId})|">돌봄 신청하기</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'CLOSED'}" disabled>돌봄 신청 마감</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'APPLIED'}" disabled>이미 신청한 글</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'CLOSED_AND_APPLIED'}" disabled>마감된 글 (신청 완료)</button>
           </div>
           </div>
         </article>

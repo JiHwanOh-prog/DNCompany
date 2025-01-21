@@ -162,6 +162,18 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.post-card.accepted {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.post-card.accepted:hover {
+    transition: none;
+    transform: none;
+    box-shadow: none;
+}
+
+
 /* 태그 컨테이너 */
 .post-tags {
     display: flex;
@@ -183,6 +195,15 @@
     font-size: 15px;
     letter-spacing: 2px;
 }
+
+.tag.accepted {
+    background-color: #dbdbdb;
+    font-family: "Ownglyph_ParkDaHyun";
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--main-font-color);
+}
+
 /* 게시글 제목 스타일 */
 .post-title {
     font-size: 18px;

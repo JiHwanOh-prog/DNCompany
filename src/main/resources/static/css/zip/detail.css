@@ -41,10 +41,10 @@
 
 .qaDetail_qaDetailTop {
     margin: 10px 0;
-    font-family: Pretendard-Regular;
+    font-family: "Pretendard-Regular";
     letter-spacing: 2px;
     font-size: 22px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .qaDetail_qaDetailText {
@@ -55,6 +55,7 @@
     font-size: 15px;
     line-height: 180%;
     letter-spacing: 1px;
+    font-family: "Pretendard-Regular";
 }
 
 .qaDetail_qaDetailImgBox {

@@ -102,15 +102,32 @@ public class HelpController {
      * @return 상세 페이지 이동
      */
     @GetMapping("/detail")
-    public String helpDetail(@RequestParam Long helpId, Model model) {
+    public String helpDetail(@RequestParam Long helpId,
+                             @SessionAttribute(value = "usersId", required = false) Long usersId,
+                             Model model) {
+
+
+
         HelpDetailDTO helpDetail = helpService.getHelpDetail(helpId);
         log.info("helpDetail: {}", helpDetail);
 
         // 모집 상태 확인
-        boolean isRecruiting = helpMapper.checkHelpOfferExists(helpId) > 0;
+        boolean isAccepted = helpMapper.checkHelpOfferExists(helpId) > 0;
+        // 이미 작성한 글인지 확인
+        boolean isHelpAlreadyApplied = helpService.isHelpAlreadyApplied(helpId, usersId);
+        // 버튼 상태를 위한 변수 -> 초기값 : 신청 가능
+        String determineButtonStatus = "AVAILABLE";
+
+        // 이미 수락된 글이고 내가 신청한게 아니면
+        if (isAccepted) { determineButtonStatus =  "CLOSED"; }
+        // 이미 내가 신청한 글이라면
+        if (isHelpAlreadyApplied) { determineButtonStatus =  "APPLIED"; }
+        // 이미 수락한 글이고 내가 신청한 글이라면
+        if (isAccepted && isHelpAlreadyApplied) { determineButtonStatus = "CLOSED_AND_APPLIED"; }
 
         model.addAttribute("helpDetail", helpDetail);
-        model.addAttribute("isRecruiting", isRecruiting);
+        model.addAttribute("isAccepted", isAccepted);
+        model.addAttribute("determineButtonStatus", determineButtonStatus);
         return "help/detail";
     }
 

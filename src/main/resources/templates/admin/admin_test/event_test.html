@@ -2,51 +2,157 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이벤트 게시글 상세</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ef 100%);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
     .event-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
+
+    h1 {
+      text-align: center;
+      color: #1a1a1a;
+      margin-bottom: 30px;
+      font-size: 2.2em;
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+      border-radius: 2px;
+    }
+
     .event-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      padding: 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 40px;
+      position: relative;
     }
+
     .event-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
+      font-size: 2em;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+      line-height: 1.4;
     }
+
     .event-meta {
-      font-size: 14px;
-      color: #666;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: rgba(249, 250, 251, 0.8);
+      border-radius: 12px;
+    }
+
+    .meta-top {
       margin-bottom: 15px;
     }
-    .event-content {
-      margin-top: 15px;
+
+    .meta-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    .event-meta p {
+      font-size: 0.95em;
+      color: #666;
+      display: flex;
+      align-items: center;
+    }
+
+    .event-meta p i {
+      margin-right: 10px;
+      color: #6366f1;
+    }
+
+    .event-meta span {
+      color: #333;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
+    .event-content {
+      padding: 25px 0;
+      line-height: 1.8;
+      color: #2c2c2c;
+      font-size: 1.05em;
+    }
+
     .event-content img {
       max-width: 100%;
       height: auto;
+      border-radius: 12px;
+      margin: 25px auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .event-container {
+        margin: 20px auto;
+      }
+
+      .event-card {
+        padding: 25px;
+      }
+
+      .event-title {
+        font-size: 1.5em;
+      }
+
+      .meta-bottom {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
 <div class="event-container">
-  <h1>이벤트 게시글</h1>
+  <h1>이벤트 상세</h1>
 
   <div class="event-card">
     <div class="event-title" th:text="${event.eventTitle}"></div>
     <div class="event-meta">
-      <p>게시글 ID: <span th:text="${event.eventId}"></span></p>
-      <p>작성일: <span th:text="${#temporals.format(event.eventCreatedAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
-      <p>수정일: <span th:text="${#temporals.format(event.eventUpdatedAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
-      <p>작성자 ID: <span th:text="${event.usersId}"></span></p>
+      <div class="meta-top">
+        <p><i class="fas fa-hashtag"></i>게시글 ID <span th:text="${event.eventId}"></span></p>
+      </div>
+      <div class="meta-bottom">
+        <p><i class="far fa-user"></i>작성자 ID <span>운영자</span></p>
+        <p><i class="far fa-calendar-alt"></i>작성일 <span th:text="${#temporals.format(event.eventCreatedAt, 'yyyy.MM.dd HH:mm')}"></span></p>
+        <p><i class="fas fa-edit"></i>수정일 <span th:text="${#temporals.format(event.eventUpdatedAt, 'yyyy.MM.dd HH:mm')}"></span></p>
+      </div>
     </div>
     <div class="event-content" th:utext="${event.eventContent}"></div>
   </div>
