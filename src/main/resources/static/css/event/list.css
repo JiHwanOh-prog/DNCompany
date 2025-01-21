@@ -17,6 +17,27 @@
     letter-spacing: 3px;
 }
 
+.main__festival {
+    h3 {
+        display: block;
+        margin: 100px 0px 30px 10px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--main-font-color);
+        line-height: 1;
+    }
+}
+
+.main__event__logo {
+    width: 200px;
+}
+
+.main__festival span {
+    color: var(--main-color);
+    font-family: "Ownglyph_ParkDaHyun";
+    font-size: 25px;
+}
+
 .main_mainGridContainer {
     display: flex;
     flex-wrap: wrap;

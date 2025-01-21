@@ -50,6 +50,8 @@ public class ZipService {
 
     // 게시글 수정
     public void modifyZipBoard(ZipBoardModifyDTO zipBoardModifyDTO){
+        log.info("모디피로ㅓ그다"+zipBoardModifyDTO.toString());
+
         zipMapper.updateZipBoard(zipBoardModifyDTO);
     }
 
@@ -71,45 +73,3 @@ public class ZipService {
                 zipList);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
