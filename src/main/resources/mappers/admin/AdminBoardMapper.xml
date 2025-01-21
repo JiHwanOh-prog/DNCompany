@@ -336,7 +336,7 @@
     </update>
 
     <insert id="insertEventBoard" parameterType="AdminEventWriteDTO">
-        <selectKey resultType="long" keyProperty="eventBoardId" order="BEFORE">
+        <selectKey resultType="long" keyProperty="eventId" order="BEFORE">
             SELECT SEQ_EVENT_BOARD.nextval FROM DUAL
         </selectKey>
 
@@ -346,7 +346,7 @@
         EVENT_CONTENT,
         USERS_ID )
         VALUES (
-        #{eventBoardId},
+        #{eventId},
         #{eventTitle},
         #{eventContent},
         #{usersId} )
