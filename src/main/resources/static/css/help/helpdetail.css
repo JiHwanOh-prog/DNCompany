@@ -287,6 +287,13 @@
     color: #fff;
 }
 
+.apply-button[disabled] {
+    background: #dbdbdb;
+    border : 1px solid #dbdbdb;
+    color: var(--main-font-color);
+    cursor: auto;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 576px) {
     .container {
