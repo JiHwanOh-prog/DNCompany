@@ -153,6 +153,11 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      p{
+        font-family: "Pretendard-Regular";
+        font-size: 18px;
+      }
+
     }
   }
 }
@@ -207,7 +212,8 @@
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      font-size: 12px; /* 텍스트 크기 줄임 */
+      font-size: 18px; /* 텍스트 크기 줄임 */
+      font-family: "Pretendard-Regular";
     }
   }
 }
