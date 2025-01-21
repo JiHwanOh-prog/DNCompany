@@ -15,6 +15,6 @@ public class MainDnDTO {
     private Long productImgId;
     private String productOriginalFilename;
     private String productUuid;
-    private String productFilePath;
+    private String productPath;
     private String productExtension;
 }
