@@ -31,37 +31,37 @@
                             <br><span>&nbsp;EVENT!</span>
                         </h3>
                     </div>
-                        <div class="main_mainGridContainer">
-                            <!-- 반복 구간 -->
-                            <div class="mainContent_mainContentBox" th:each="event : ${eventPageDTO.list}"
-                                 th:object="${event}">
+                    <div class="main_mainGridContainer">
+                        <!-- 반복 구간 -->
+                        <div class="mainContent_mainContentBox" th:each="event : ${eventPageDTO.list}"
+                             th:object="${event}">
+                            <a th:href="@{/admin/event/test(eventId=${event.eventId})}">
                                 <!-- 사진 박스 -->
                                 <div>
-                                <span><img
-                                        class="mainContent_mainImg"
-                                        th:src="@{/images/logo/logo_banner2.png}"
-                                        alt="게시글 썸네일" th:if="*{eventImgId == null}"/></span>
+                <span><img
+                        class="mainContent_mainImg"
+                        th:src="@{/images/logo/logo_banner2.png}"
+                        alt="게시글 썸네일" th:if="*{eventImgId == null}"/></span>
                                     <span><img
                                             class="mainContent_mainImg"
-                                            th:src="@{'upoload/event/' + *{eventPath} + '/th_' + *{eventUuid} + *{eventExtension}}"
-                                            alt="게시글 썸네일" th:unless="*{eventImgId == null}"/>
-                                </span>
+                                            th:src="@{'/upload/event/' + ${event.eventPath} + '/th_' + ${event.eventUuid} + ${event.eventExtension}}"
+                                            alt="게시글 썸네일" th:unless="${event.eventUuid == null}"/>
+                </span>
                                 </div>
                                 <div class="mainContent_mainbox">
                                     <!-- 글 박스 -->
                                     <div class="mainContent_mainContent">
                                         <div class="mainContent_mainTitle" th:text="${event.eventTitle}">이벤트 제목</div>
-                                        <div class="mainContent_mainText" th:utext="${event.eventContent}">이벤트 내용</div>
+<!--                                        <div class="mainContent_mainText" th:utext="${event.eventContent}">이벤트 내용</div>-->
                                     </div>
                                     <!-- 글 박스 하단 -->
                                     <div class="mainConent_mainInfo">
-                                        <!--                                    <div class="mainContent_subbox">이벤트 장소</div>-->
-                                        <div class="mainContent_subbox" th:text="'기간 : ' + ${event.eventCreatedAt}">이벤트
-                                            일정
-                                        </div>
+                                        <div class="mainContent_subbox" th:text="'기간 : ' + ${event.eventCreatedAt}">이벤트 일정</div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
+                    </div>
                             <!-- 반복 구간 -->
 
                         </div>
@@ -87,7 +87,6 @@
                             </div>
                         </section>
                     </div>
-                </div>
                 <div th:insert="~{/openAiChat/open_ai_chat}"></div>
         </main>
     </div>

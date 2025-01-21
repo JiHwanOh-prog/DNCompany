@@ -1,6 +1,7 @@
 package com.example.dncompany.mapper.event;
 
 import com.example.dncompany.dto.event.EventBoardDTO;
+import com.example.dncompany.dto.event.EventBoardDetailDTO;
 import com.example.dncompany.dto.event.EventBoardWriteDTO;
 import com.example.dncompany.dto.page.PageRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,5 +31,7 @@ public interface EventBoardMapper {
     List<EventBoardDTO> selectByPage (@Param("page")PageRequestDTO pageRequestDTO);
 
     int countByCondition();
+
+    EventBoardDetailDTO selectById(Long eventId);
 
 }

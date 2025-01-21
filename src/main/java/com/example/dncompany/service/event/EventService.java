@@ -1,6 +1,7 @@
 package com.example.dncompany.service.event;
 
 import com.example.dncompany.dto.event.EventBoardDTO;
+import com.example.dncompany.dto.event.EventBoardDetailDTO;
 import com.example.dncompany.dto.event.EventBoardWriteDTO;
 import com.example.dncompany.dto.event.file.EventFileDTO;
 import com.example.dncompany.dto.page.PageDTO;
@@ -165,6 +166,10 @@ public class EventService {
                 pageRequestDTO.getSize(),
                 total,
                 eventList);
+    }
+
+    public EventBoardDetailDTO getEventById(Long eventId) {
+        return eventMapper.selectById(eventId);
     }
 
 }
