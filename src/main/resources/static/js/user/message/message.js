@@ -81,196 +81,171 @@ $form.addEventListener('submit', function (e) {
 // });
 //
 
-{
+// ====================== 공통 처리 ======================
 
-    const $deleteBtn = document.querySelector(".title__delete__btn")
-    $deleteBtn?.addEventListener('click', function () {
-        if (confirm('정말 삭제하시겠습니까?')) {
-            // TODO: 서버에 삭제 요청
-            console.dir(this)
-            const messageId = this.dataset.messageId;
-            location.href = `/user/message?messageId=${messageId}`;
-        }
-    });
-
-// 받은/보낸 쪽지 모달 DOM 요소 선택
-    const $receivedModal = document.querySelector('.received-modal'); // 받은 쪽지 모달
-    const $sentModal = document.querySelector('.sent-modal'); // 보낸 쪽지 모달
-
-// 닫기 버튼 DOM 요소 선택
-    const $closeReceivedModal = $receivedModal.querySelector('.message_receive__btn_close'); // 받은 쪽지 모달 닫기 버튼
-    const $closeSentModal = $sentModal.querySelector('.message_receive__btn_close'); // 보낸 쪽지 모달 닫기 버튼
-
-// ====================== 받은 쪽지 비동기 처리 ======================
-
-// 받은 쪽지 데이터를 받아와 화면에 표시하고 페이지 그룹 생성
-    function handlemessageListTOData(data) {
-        displaymessageListTo(data.list); // 받은 쪽지 목록 표시
-        messageToPageGroup(data); // 페이지네이션 처리
+const $deleteBtn = document.querySelector(".title__delete__btn");
+$deleteBtn?.addEventListener("click", function () {
+    if (confirm("정말 삭제하시겠습니까?")) {
+        console.dir(this);
+        const messageId = this.dataset.messageId;
+        location.href = `/user/message?messageId=${messageId}`;
     }
+});
 
-// 초기 로드 시 1페이지 데이터를 요청
-    messageListApi.getMessageListTo(1, handlemessageListTOData);
+const $receivedModal = document.querySelector(".received-modal"); // 받은 쪽지 모달
+const $sentModal = document.querySelector(".sent-modal"); // 보낸 쪽지 모달
 
-// 페이지네이션 클릭 이벤트 리스너 추가
-    const $toPageGroupContainer = document.querySelector('#paginationTo');
-    $toPageGroupContainer.addEventListener('click', function (e) {
-        if (e.target.tagName === 'A') {
-            const page = e.target.dataset.page; // 클릭한 페이지 번호 가져오기
-            messageListApi.getMessageListTo(page, handlemessageListTOData); // 해당 페이지 데이터 요청
-        }
-    });
+const $closeReceivedModal = $receivedModal.querySelector(".message_receive__btn_close");
+const $closeSentModal = $sentModal.querySelector(".message_receive__btn_close");
 
-// 받은 쪽지 목록을 동적으로 생성하여 화면에 추가
-    function displaymessageListTo(messageList) {
-        let html = ''; // HTML 문자열 초기화
-        messageList.forEach((message) => {
-            // 각 쪽지 데이터를 기반으로 HTML 구성
-            html += `
-            <div class="message__info__title__user" data-login-id="${message.loginId}" data-content="${message.msContent}">
-                <p class="info__title__user">${message.loginId}</p>
-                <p class="info__title__user">${message.msContent}</p>
-                <button class="title__delete__btn" data-message-id="${message.messageId}">삭제</button>
-            </div>
-        `;
-        });
-        document.querySelector('#messageToListContainer').innerHTML = html; // HTML 삽입
-    }
+// ====================== 받은 쪽지 처리 ======================
 
-// 받은 쪽지 페이지네이션 HTML 동적으로 생성
-    function messageToPageGroup(pageDTO) {
-        let html = ``; // HTML 문자열 초기화
-
-        // 이전 페이지 버튼 생성
-        if (pageDTO.startPage > 1) {
-            html += `<a class="page-btn prev" data-page="${pageDTO.startPage - 1}">&lt;</a>`;
-        }
-
-        // 현재 페이지 범위의 버튼 생성
-        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
-            html += `<a class="page-btn ${pageDTO.page == i ? 'active' : ''}" data-page="${i}">${i}</a>`;
-        }
-
-        // 다음 페이지 버튼 생성
-        if (pageDTO.endPage < pageDTO.totalPages) {
-            html += `<a class="page-btn next" data-page="${pageDTO.endPage + 1}">&gt;</a>`;
-        }
-
-        document.querySelector('#paginationTo').innerHTML = html; // HTML 삽입
-    }
-
-// ====================== 보낸 쪽지 비동기 처리 ======================
-
-// 보낸 쪽지 데이터를 받아와 화면에 표시하고 페이지 그룹 생성
-    function handlemessageListFromData(data) {
-        displaymessageListFrom(data.list); // 보낸 쪽지 목록 표시
-        messageFromPageGroup(data); // 페이지네이션 처리
-    }
-
-// 초기 로드 시 1페이지 데이터를 요청
-    messageListApi.getMessageListFrom(1, handlemessageListFromData);
-
-// 페이지네이션 클릭 이벤트 리스너 추가
-    const $fromPageGroupContainer = document.querySelector('#paginationFrom');
-    $fromPageGroupContainer.addEventListener('click', function (e) {
-        if (e.target.tagName === 'A') {
-            const page = e.target.dataset.page; // 클릭한 페이지 번호 가져오기
-            messageListApi.getMessageListFrom(page, handlemessageListFromData); // 해당 페이지 데이터 요청
-        }
-    });
-
-// 보낸 쪽지 목록을 동적으로 생성하여 화면에 추가
-    function displaymessageListFrom(messageList) {
-        let html = ''; // HTML 문자열 초기화
-        messageList.forEach((message) => {
-            // 각 쪽지 데이터를 기반으로 HTML 구성
-            html += `
-            <div class="message__info__title__user" data-login-id="${message.loginId}" data-content="${message.msContent}">
-                <p class="info__title__user">${message.loginId}</p>
-                <p class="info__title__user">${message.msContent}</p>
-                <button class="title__delete__btn" data-message-id="${message.messageId}">삭제</button>
-            </div>
-        `;
-        });
-        document.querySelector('#messageFromListContainer').innerHTML = html; // HTML 삽입
-    }
-
-// 보낸 쪽지 페이지네이션 HTML 동적으로 생성
-    function messageFromPageGroup(pageDTO) {
-        let html = ``; // HTML 문자열 초기화
-
-        // 이전 페이지 버튼 생성
-        if (pageDTO.startPage > 1) {
-            html += `<a class="page-btn prev" data-page="${pageDTO.startPage - 1}">&lt;</a>`;
-        }
-
-        // 현재 페이지 범위의 버튼 생성
-        for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
-            html += `<a class="page-btn ${pageDTO.page == i ? 'active' : ''}" data-page="${i}">${i}</a>`;
-        }
-
-        // 다음 페이지 버튼 생성
-        if (pageDTO.endPage < pageDTO.totalPages) {
-            html += `<a class="page-btn next" data-page="${pageDTO.endPage + 1}">&gt;</a>`;
-        }
-
-        document.querySelector('#paginationFrom').innerHTML = html; // HTML 삽입
-    }
-
-// ====================== 모달 열기 및 닫기 처리 ======================
-
-// 클릭 이벤트로 받은/보낸 쪽지 모달 열기
-    document.addEventListener('click', function (e) {
-        const $target = e.target;
-
-        // 받은 쪽지 모달 열기
-        if ($target.closest('#messageToListContainer')) {
-            const $messageItem = $target.closest('.message__info__title__user');
-            if ($messageItem) {
-                const sender = $messageItem.dataset.loginId; // 보낸 사람
-                const content = $messageItem.dataset.content; // 쪽지 내용
-                $receivedModal.querySelector('.modal-sender').textContent = sender;
-                $receivedModal.querySelector('.modal-content').textContent = content;
-                $receivedModal.style.display = 'flex'; // 모달 표시
-            }
-        }
-
-        // 보낸 쪽지 모달 열기
-        if ($target.closest('#messageFromListContainer')) {
-            const $messageItem = $target.closest('.message__info__title__user');
-            if ($messageItem) {
-                const receiver = $messageItem.dataset.loginId; // 받은 사람
-                const content = $messageItem.dataset.content; // 쪽지 내용
-                $sentModal.querySelector('.modal-receiver').textContent = receiver;
-                $sentModal.querySelector('.modal-content').textContent = content;
-                $sentModal.style.display = 'flex'; // 모달 표시
-            }
-        }
-    });
-
-// 받은 쪽지 모달 닫기
-    $closeReceivedModal.addEventListener('click', () => {
-        $receivedModal.style.display = 'none';
-    });
-
-// 보낸 쪽지 모달 닫기
-    $closeSentModal.addEventListener('click', () => {
-        $sentModal.style.display = 'none';
-    });
-
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('title__delete__btn')) {
-            if (confirm('메세지를 삭제하시겠습니까?')) {
-                const messageId = e.target.dataset.messageId;
-                messageListApi.deleteMessage(messageId, function () {
-                    messageListApi.getMessageListFrom(1, handlemessageListFromData);
-                    messageListApi.getMessageListTo(1, handlemessageListTOData);
-                })
-
-            }
-
-        }
-    });
-
+function handlemessageListTOData(data) {
+    displaymessageListTo(data.list); // 받은 쪽지 목록 표시
+    messageToPageGroup(data); // 페이지네이션 처리
 }
+
+messageListApi.getMessageListTo(1, handlemessageListTOData);
+
+const $toPageGroupContainer = document.querySelector("#paginationTo");
+$toPageGroupContainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+        const page = e.target.dataset.page;
+        messageListApi.getMessageListTo(page, handlemessageListTOData);
+    }
+});
+
+function displaymessageListTo(messageList) {
+    let html = "";
+    messageList.forEach((message) => {
+        let content = message.msContent ? message.msContent : "빈 메세지입니다.";
+        html +=
+            `<div class="message__info__title__user" data-login-id="${message.loginId}" data-content="${content}">
+                <p class="info__title__user">${message.loginId}</p>
+                <p class="info__title__user">${content}</p>
+                <button class="title__delete__btn" data-message-id="${message.messageId}">삭제</button>
+            </div>`;
+    });
+    document.querySelector("#messageToListContainer").innerHTML = html;
+}
+
+function messageToPageGroup(pageDTO) {
+    let html = "";
+
+    if (pageDTO.startPage > 1) {
+        html += `<a class="page-btn prev" data-page="${pageDTO.startPage - 1}">&lt;</a>`;
+    }
+
+    for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+        html += `<a class="page-btn ${pageDTO.page == i ? "active" : ""}" data-page="${i}">${i}</a>`;
+    }
+
+    if (pageDTO.endPage < pageDTO.totalPages) {
+        html += `<a class="page-btn next" data-page="${pageDTO.endPage + 1}">&gt;</a>`;
+    }
+
+    document.querySelector("#paginationTo").innerHTML = html;
+}
+
+// ====================== 보낸 쪽지 처리 ======================
+
+function handlemessageListFromData(data) {
+    displaymessageListFrom(data.list); // 보낸 쪽지 목록 표시
+    messageFromPageGroup(data); // 페이지네이션 처리
+}
+
+messageListApi.getMessageListFrom(1, handlemessageListFromData);
+
+const $fromPageGroupContainer = document.querySelector("#paginationFrom");
+$fromPageGroupContainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+        const page = e.target.dataset.page;
+        messageListApi.getMessageListFrom(page, handlemessageListFromData);
+    }
+});
+function displaymessageListFrom(messageList) {
+    let html = "";
+    messageList.forEach((message) => {
+        // null 또는 빈 문자열이 있을 경우 "빈 메세지입니다."로 대체
+        let content = message.msContent ? message.msContent : "빈 메세지입니다.";
+        html += `
+            <div class="message__info__title__user" data-login-id="${message.loginId}" data-content="${content}">
+                <p class="info__title__user">${message.loginId}</p>
+                <p class="info__title__user">${content}</p>
+                <button class="title__delete__btn" data-message-id="${message.messageId}">삭제</button>
+            </div>
+        `;
+    });
+    document.querySelector("#messageFromListContainer").innerHTML = html;
+}
+
+function messageFromPageGroup(pageDTO) {
+    let html = "";
+
+    if (pageDTO.startPage > 1) {
+        html += `<a class="page-btn prev" data-page="${pageDTO.startPage - 1}">&lt;</a>`;
+    }
+
+    for (let i = pageDTO.startPage; i <= pageDTO.endPage; i++) {
+        html += `<a class="page-btn ${pageDTO.page == i ? "active" : ""}" data-page="${i}">${i}</a>`;
+    }
+
+    if (pageDTO.endPage < pageDTO.totalPages) {
+        html += `<a class="page-btn next" data-page="${pageDTO.endPage + 1}">&gt;</a>`;
+    }
+
+    document.querySelector("#paginationFrom").innerHTML = html;
+}
+
+// ====================== 모달 처리 ======================
+
+document.addEventListener("click", function (e) {
+    const $target = e.target;
+
+    if ($target.closest("#messageToListContainer")) {
+        const $messageItem = $target.closest(".message__info__title__user");
+        if ($messageItem) {
+            const sender = $messageItem.dataset.loginId;
+            const content = $messageItem.dataset.content;
+            $receivedModal.querySelector(".modal-sender").textContent = sender;
+            $receivedModal.querySelector(".modal-content").textContent = content;
+            $receivedModal.style.display = "flex";
+        }
+    }
+
+    if ($target.closest("#messageFromListContainer")) {
+        const $messageItem = $target.closest(".message__info__title__user");
+        if ($messageItem) {
+            const receiver = $messageItem.dataset.loginId;
+            const content = $messageItem.dataset.content;
+            $sentModal.querySelector(".modal-receiver").textContent = receiver;
+            $sentModal.querySelector(".modal-content").textContent = content;
+            $sentModal.style.display = "flex";
+        }
+    }
+});
+
+$closeReceivedModal.addEventListener("click", () => {
+    $receivedModal.style.display = "none";
+});
+
+$closeSentModal.addEventListener("click", () => {
+    $sentModal.style.display = "none";
+});
+
+// 삭제 버튼 클릭 시 모달 열리지 않게 처리
+
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("title__delete__btn")) {
+        e.stopPropagation();
+        if (confirm("메세지를 삭제하시겠습니까?")) {
+            const messageId = e.target.dataset.messageId;
+            messageListApi.deleteMessage(messageId, function () {
+                messageListApi.getMessageListFrom(1, handlemessageListFromData);
+                messageListApi.getMessageListTo(1, handlemessageListTOData);
+            });
+        }
+    }
+});
+
 
