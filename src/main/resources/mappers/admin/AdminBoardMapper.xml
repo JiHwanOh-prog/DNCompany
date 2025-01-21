@@ -297,8 +297,8 @@
     </select>
 
     <insert id="insertQnaAnswer" parameterType="AdminAnswerDTO">
-        INSERT INTO ADMIN.QNA_ANSWER (QNA_ANSWER_ID, QNA_ANSWER_CONTENT,QNA_ANSWER_CREATED_AT, QNA_ANSWER_UPDATED_AT,QNA_ID)
-        VALUES (   SEQ_QNA_ANSWER.NEXTVAL,#{qnaAnswerContent},SYSDATE,SYSDATE,#{qnaId})
+        INSERT INTO ADMIN.QNA_ANSWER (QNA_ANSWER_ID, QNA_ANSWER_CONTENT,QNA_ANSWER_CREATED_AT, QNA_ANSWER_UPDATED_AT,QNA_ID,USERS_ID)
+        VALUES (   SEQ_QNA_ANSWER.NEXTVAL,#{qnaAnswerContent},SYSDATE,SYSDATE,#{qnaId},1)
     </insert>
 
 <!--      프로퍼티 설정 때문에 별칭 안해도 되는데 설정 파일을 두고 왔었음-->
@@ -336,7 +336,7 @@
     </update>
 
     <insert id="insertEventBoard" parameterType="AdminEventWriteDTO">
-        <selectKey resultType="long" keyProperty="eventBoardId" order="BEFORE">
+        <selectKey resultType="long" keyProperty="eventId" order="BEFORE">
             SELECT SEQ_EVENT_BOARD.nextval FROM DUAL
         </selectKey>
 
@@ -346,7 +346,7 @@
         EVENT_CONTENT,
         USERS_ID )
         VALUES (
-        #{eventBoardId},
+        #{eventId},
         #{eventTitle},
         #{eventContent},
         #{usersId} )
