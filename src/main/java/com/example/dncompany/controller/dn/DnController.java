@@ -55,6 +55,7 @@ public class DnController {
 
         DnBoardDetailDTO foundBoard = dnBoardService.getDnBoardById(dnId);
         model.addAttribute("board",foundBoard);
+        model.addAttribute("messageContent", "글 제목 : " + foundBoard.getDnTitle() + "\n상품명 : " + foundBoard.getProductName() + "\n문의 내용 : ");
 
         return "dn/detail";
     }
