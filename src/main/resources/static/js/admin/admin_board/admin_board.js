@@ -418,7 +418,8 @@ document.getElementById('postListBody').addEventListener('click', function(e) {
             reportIds: [],
             helpIds: [],
             eventIds: [],
-            zipIds: []
+            zipIds: [],
+            dnIds: []
         };
 
         checkedBoxes.forEach(checkbox => {
@@ -443,6 +444,9 @@ document.getElementById('postListBody').addEventListener('click', function(e) {
                     break;
                 case 'ZIP':
                     selectedPosts.zipIds.push(postId);
+                    break;
+                case 'DN': 
+                    selectedPosts.dnIds.push(postId);
                     break;
             }
         });
