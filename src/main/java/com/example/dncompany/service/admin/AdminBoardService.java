@@ -164,7 +164,7 @@ public class AdminBoardService {
         // 1. 게시글 저장 처리
         adminEventWriteDTO.setUsersId(userId);
         adminBoardMapper.insertEventBoard(adminEventWriteDTO);
-        Long eventBoardId = adminEventWriteDTO.getEventBoardId();
+        Long eventBoardId = adminEventWriteDTO.getEventId();
 
         // 2. 본문에서 이미지 URL 추출
         Pattern pattern = Pattern.compile("/upload/event/([^\"]+)");

@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>이벤트 게시글 테스트</title>
+  <title>이벤트 게시글 상세</title>
   <style>
     .event-container {
       max-width: 1200px;
@@ -38,12 +38,12 @@
 </head>
 <body>
 <div class="event-container">
-  <h1>이벤트 게시글 테스트 페이지</h1>
+  <h1>이벤트 게시글</h1>
 
-  <div th:each="event : ${eventList}" class="event-card">
+  <div class="event-card">
     <div class="event-title" th:text="${event.eventTitle}"></div>
     <div class="event-meta">
-      <p>게시글 ID: <span th:text="${event.eventBoardId}"></span></p>
+      <p>게시글 ID: <span th:text="${event.eventId}"></span></p>
       <p>작성일: <span th:text="${#temporals.format(event.eventCreatedAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
       <p>수정일: <span th:text="${#temporals.format(event.eventUpdatedAt, 'yyyy-MM-dd HH:mm:ss')}"></span></p>
       <p>작성자 ID: <span th:text="${event.usersId}"></span></p>

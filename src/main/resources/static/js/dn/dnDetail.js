@@ -1,5 +1,5 @@
 import * as likeApi from "./modules/likeApi.js";
-// import * as userApi from "../user/modules/userApi";
+import * as userApi from "../user/modules/userApi.js";
 import * as messageListApi from "../user/modules/messageListApi.js";
 
 {
@@ -60,8 +60,6 @@ import * as messageListApi from "../user/modules/messageListApi.js";
 
 
 openModal();
-
-
 
 function openModal() {
     const $messageSend = document.querySelector('.chat_button');

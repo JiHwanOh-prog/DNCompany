@@ -30,7 +30,7 @@
                     <!-- 작성글 박스 -->
                     <div class="product_qaDetailQuestion" th:object="${board}">
                         <div class="product_qaDetailTitle">
-                            <div class="product_labelListWrapper" >
+                            <div class="product_labelListWrapper">
                                 <button class="mylabel_activeLabel"
                                         th:switch="*{dnPetCategory}">
                                     <span th:case="'dog'">강아지</span>
@@ -57,28 +57,28 @@
                             </div>
 
                             <div class="product_top">
-                            <h1 class="product_qaDetailTop" th:text="*{dnTitle}">물품명</h1>
-                            <div class="product_qaDetailInfo">
-                                <div>
-                                    <a href="" class="product_infoWrapper">
-                                        <img src="/images/dn/profileIcon.png" alt="dn detail 프로필사진"/>
-                                        <div class="product_qaDetailUser" th:text="*{loginId}">삼색이짱짱</div>
-                                        <div class="product_qaDetailDate" th:text="*{dbUpdatedAt}">2024.12.17</div>
-                                    </a>
+                                <h1 class="product_qaDetailTop" th:text="*{dnTitle}">물품명</h1>
+                                <div class="product_qaDetailInfo">
+                                    <div>
+                                        <a href="" class="product_infoWrapper">
+                                            <img src="/images/dn/profileIcon.png" alt="dn detail 프로필사진"/>
+                                            <div class="product_qaDetailUser" th:text="*{loginId}">삼색이짱짱</div>
+                                            <div class="product_qaDetailDate" th:text="*{dbUpdatedAt}">2024.12.17</div>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
 
-<!--                        <div class="product_qaDetailText">
-                            <div class="product_img_detail" th:if="*{productImgId != null}">
-                                &lt;!&ndash; 상품 이미지 &ndash;&gt;
-                                <img th:src="@{'/upload/dn/' + *{productPath} + '/' + *{productUuid} + *{productExtension}}" alt="상품 이미지" class="product_image"/>
-                            </div>-->
-<!--                            <div class="product_img_detail" th:unless="*{productImgId != null}">-->
-<!--                            &lt;!&ndash; 상품 이미지 &ndash;&gt;-->
-<!--                            <img th:src="@{/images/logo/logo_header2.png}" alt="상품 이미지" class="product_image"/>-->
-<!--                        </div>-->
+                        <!--                        <div class="product_qaDetailText">
+                                                    <div class="product_img_detail" th:if="*{productImgId != null}">
+                                                        &lt;!&ndash; 상품 이미지 &ndash;&gt;
+                                                        <img th:src="@{'/upload/dn/' + *{productPath} + '/' + *{productUuid} + *{productExtension}}" alt="상품 이미지" class="product_image"/>
+                                                    </div>-->
+                        <!--                            <div class="product_img_detail" th:unless="*{productImgId != null}">-->
+                        <!--                            &lt;!&ndash; 상품 이미지 &ndash;&gt;-->
+                        <!--                            <img th:src="@{/images/logo/logo_header2.png}" alt="상품 이미지" class="product_image"/>-->
+                        <!--                        </div>-->
                         <div class="product_qaDetailContent_wrapper">
                             <div class="product_detail_right">
                                 <div class="dnDetailBtm">
@@ -89,11 +89,22 @@
                                     <!-- 판매자와 대화 버튼 -->
                                     <button class="chat_button">판매자와 대화</button>
                                 </div>
-                                <div class="product_dn_status pending" th:if="*{dnStatus == 'PENDING'}"> 판매중 </div>
-                                <div class="product_dn_status complete" th:if="*{dnStatus == 'COMPLETE'}"> 거래완료 </div>
-                                <!-- 판매 금액 -->
-                                <div class="product_price" th:text="*{productName}">₩50,000</div>
-                                <div class="product_price" th:text="'판매 금액 : ₩ ' + *{productPrice}">₩50,000</div>
+                                <div class="product_dn_top__container">
+                                    <div class="product_dn_top__img">
+                                        <img th:src="@{/images/logo/logo_banner2.png}" alt="게시글 썸네일" th:if="*{productImgId == null}" />
+                                        <img th:src="@{'/upload/dn/' + *{productPath} + '/th_' + *{productUuid} + *{productExtension}}" alt="게시글 썸네일" th:unless="*{productImgId == null}"/>
+                                    </div>
+                                    <div class="product_dn_top__info">
+                                        <div class="product_dn_status pending" th:if="*{dnStatus == 'PENDING'}"> 판매중
+                                        </div>
+                                        <div class="product_dn_status complete" th:if="*{dnStatus == 'COMPLETE'}"> 거래완료
+                                        </div>
+                                        <!-- 판매 금액 -->
+                                        <div class="product_price" th:text="*{productName}">₩50,000</div>
+                                        <div class="product_price" th:text="'판매 금액 : ₩ ' + *{productPrice}">₩50,000
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- 판매 글 내용 -->
                                 <div class="product_content">
                                     <div class="product_description" th:utext="*{dnContent}">
@@ -104,27 +115,37 @@
                                 <!-- 관심 상품 버튼 -->
 
                             </div>
-<!--                        </div>-->
+                            <!--                        </div>-->
 
-                        <!-- 작성자 정보 -->
+                            <!-- 작성자 정보 -->
 
-                        <!-- 작성글 삭제/수정 버튼 -->
-                        <div class="delete_modify_Btn" th:if="${session.usersId} == *{usersId}">
-                            <div class="delete_Btn">
-                                <button class="delete_Btn_item" tabindex="0" type="button" th:data-dn-id="*{dnId}" th:data-product-id="*{productId}">
-                                    글 삭제
-                                </button>
+                            <!-- 작성글 삭제/수정 버튼 -->
+                            <div class="delete_modify_Btn">
+                                <div class="delete_Btn" th:if="${session.usersId} == *{usersId}">
+                                    <button class="delete_Btn_item" tabindex="0" type="button" th:data-dn-id="*{dnId}"
+                                            th:data-product-id="*{productId}">
+                                        글 삭제
+                                    </button>
+                                </div>
+                                <!-- 작성글 수정 버튼 -->
+                                <div class="modify_Btn" th:if="${session.usersId} == *{usersId}">
+                                    <button class="modify_Btn_item" tabindex="0" type="button">
+                                        <a th:href="@{/dn/modify(dnId=*{dnId})}">
+                                            글 수정
+                                        </a>
+                                    </button>
+                                </div>
+                                <div class="modify_Btn">
+                                    <button class="go-to-list-btn" tabindex="0" type="button">
+                                        <a th:href="@{/dn/market}">
+                                            목록으로
+                                        </a>
+                                    </button>
+                                </div>
+
                             </div>
-                            <!-- 작성글 수정 버튼 -->
-                            <div class="modify_Btn">
-                                <button class="modify_Btn_item" tabindex="0" type="button">
-                                    <a th:href="@{/dn/modify(dnId=*{dnId})}">
-                                    글 수정
-                                    </a>
-                                </button>
-                            </div>
+
                         </div>
-                    </div>
                     </div>
                     <!--모달창-->
                     <div class="message_modal_box">
@@ -137,12 +158,14 @@
                                 <label for="userFrom"></label>
                                 <input type="hidden" id="userFrom" name="userFrom" th:value="${session.usersId}">
                                 <label for="loginIdTo"></label>
-                                <input type="text" id="loginIdTo" name="loginIdTo" placeholder="아이디를 입력해주세요." th:value="${board.loginId}">
+                                <input type="text" id="loginIdTo" name="loginIdTo" placeholder="아이디를 입력해주세요."
+                                       th:value="${board.loginId}">
                             </div>
                             <div class="message__top">
                                 <p>쪽지 내용</p>
                                 <label for="msContent"></label>
-                                <textarea class="message__content_box" id="msContent" name="msContent" placeholder="쪽지의 내용을 작성해주세요."></textarea>
+                                <textarea class="message__content_box" id="msContent" name="msContent"
+                                          placeholder="쪽지의 내용을 작성해주세요."></textarea>
                             </div>
 
                             <div class="message__botton">

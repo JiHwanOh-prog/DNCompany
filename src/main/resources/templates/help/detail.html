@@ -29,7 +29,7 @@
             <div class="tags">
              <span class="tag" th:classappend="${isRecruiting} ? 'tag-orange' : 'tag-green'"
                    th:text="${isRecruiting} ? '모집 마감' : '모집중'">
-    </span>-
+    </span>
             <h1 th:text="${helpDetail.helpTitle}">우리 댕댕이 산책 도와주실 분 구해요</h1>
             <div class="header-info">
               <div class="writer-info">
@@ -43,7 +43,12 @@
 
           <!-- 반려동물 정보 -->
           <section class="info-section pet-info">
-            <h2>🐾 반려동물 정보</h2>
+            <div class="pet-info-box">
+              <img src="/images/feet.png" alt="고양이발" class="info-section-feet">
+              &nbsp;
+              <p th:text="' ' + ${helpDetail.petName}" class="pet-info-font"></p>
+              <p class="pet-info-first-font">&nbsp;정보</p>
+            </div>
             <div class="pet-profile">
               <div class="pet-details">
                 <dl>
@@ -62,15 +67,18 @@
 
           <!-- 돌봄 정보 -->
           <section class="info-section care-info">
-            <h2>📅 돌봄 정보</h2>
+            <p class="pet-info-first-font-other">📅 돌봄 정보</p>
             <div class="care-details">
+              <div class="care-detail-item">
+                <div class="care-price">
+                  <span class="price-amount" th:text="${helpDetail.helpPrice}">60000원</span>
+                  <img src="/images/help/pIcon.png" alt="포인트아이콘" class="careIcon"> <span class="price-text"> 지급</span>
+                </div>
               <div class="care-point">
-                <span class="point-amount" th:text="${helpDetail.helpPoint + 'P'}">2,000P</span>
-                <span class="point-text">포인트 제공</span>
+                <span class="point-amount" th:text="${helpDetail.helpPoint}">2,000P</span>
+                <img src="/images/help/wonIcon.png" alt="포인트아이콘" class="careIcon"><span class="point-text"> 제공</span>
               </div>
-              <div class="care-price">
-              <span class="price-amount" th:text="${helpDetail.helpPrice + '원'}">60000원</span>
-              <span class="price-text">지급</span>
+
               </div>
               <dl>
                 <dt>돌봄 유형</dt>
@@ -87,7 +95,7 @@
 
           <!-- 특이사항 -->
           <section class="info-section note-info">
-            <h2>📝 특이사항</h2>
+            <p class="pet-info-first-font-other">📝 특이사항</p>
             <p class="note-text" th:text="${helpDetail.helpSpecialNote}">
               사람을 좋아하는 아이입니다.
               산책을 매우 좋아하며 다른 강아지들과도 잘 어울립니다.
@@ -106,6 +114,7 @@
           <!-- 신청하기 버튼 -->
           <div class="action-buttons">
             <button class="apply-button" th:onclick="|applyForCare(${helpDetail.helpId})|">돌봄 신청하기</button>
+          </div>
           </div>
         </article>
       </div>

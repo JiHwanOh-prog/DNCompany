@@ -17,12 +17,12 @@ public class AdminEventTestService {
     private final AdminBoardMapper adminBoardMapper;
 
     @Transactional(readOnly = true)
-    public List<AdminEventWriteDTO> getAllEvents() {
-        log.debug("====== Get All Events Service Start ======");
-        List<AdminEventWriteDTO> eventList = adminBoardMapper.selectAllEvents();
-        log.debug("Found {} events", eventList.size());
-        log.debug("Event List: {}", eventList);
-        log.debug("====== Get All Events Service End ======");
-        return eventList;
+    public AdminEventWriteDTO getEventById(Long eventId) {
+        log.debug("====== Get Event By ID Service Start ======");
+        log.debug("Requesting event with ID: {}", eventId);
+        AdminEventWriteDTO event = adminBoardMapper.selectAllEvents(eventId);
+        log.debug("Found event: {}", event);
+        log.debug("====== Get Event By ID Service End ======");
+        return event;
     }
 }

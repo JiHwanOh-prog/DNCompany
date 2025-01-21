@@ -27,15 +27,19 @@
 
 .tags {
     margin-bottom: 16px;
+    h1{
+        font-family: "Pretendard-Regular";
+    }
 }
 
 .tag {
     display: inline-block;
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     margin-right: 8px;
+    font-family: "Ownglyph_ParkDaHyun";
 }
 /* 태그 색상 추가 */
 .tag-green {
@@ -73,11 +77,13 @@
 }
 
 .writer-name {
-    font-weight: 500;
+    color: var(--sub-font-color);
+    font-family: "Pretendard-Regular";
 }
 
 .post-info {
-    color: #666;
+    color: var(--sub-font-color);
+    font-family: "Pretendard-Regular";
     font-size: 14px;
 }
 
@@ -95,11 +101,40 @@
     font-weight: normal;
     font-style: normal;
 }
-.info-section h2 {
-    font-family: "Ownglyph_ParkDaHyun";
-    font-size: 23px;
-    color: rgb(189, 118, 255);
+
+.pet-info-box{
+    display: flex;
+    align-items: center;
+    justify-content: left;
     margin-bottom: 20px;
+}
+
+.pet-info-first-font{
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    color: var(--main-font-color);
+
+}
+
+.pet-info-first-font-other{
+    font-family: "Pretendard-Regular";
+    font-size: 18px;
+    color: var(--main-font-color);
+    margin-bottom: 20px;
+}
+
+.pet-info-font{
+    font-family: "Ownglyph_ParkDaHyun";
+    color: var(--main-font-color);
+    font-size: 25px;
+}
+
+.info-section-feet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21px;
+    height: 21px;
 }
 
 /* 반려동물 프로필 */
@@ -117,45 +152,86 @@
 
 .pet-details dt {
     color: #666;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: "Pretendard-Regular";
 }
 
 .pet-details dd {
     color: #333;
     font-weight: 500;
+    font-family: "Ownglyph_ParkDaHyun";
+    font-size: 20px;
 }
 
 /* 돌봄 정보 */
+.care-detail-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
 .care-point {
-    background: rgb(189, 118, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    background: #fff;
     border-radius: 12px;
     padding: 16px;
     text-align: center;
     margin-bottom: 20px;
+    border: 1px solid var(--main-color);
 }
 .care-price {
-    background: rgb(189, 118, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    background: #fff;
     border-radius: 12px;
     padding: 16px;
     text-align: center;
     margin-bottom: 20px;
+    border: 1px solid var(--main-color);
 }
 
 .point-amount {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    color: rgb(95, 0, 128);
+    color: var(--sub-font-color);
+    font-family: "Pretendard-Regular";
 }
 .price-amount {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    color: rgb(95, 0, 128);
+    color: var(--sub-font-color);
+    font-family: "Pretendard-Regular";
+}
+
+.careIcon{
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 3px;
 }
 
 .point-text {
     font-size: 14px;
-    color: rgb(95, 0, 128);
-    margin-left: 8px;
+    color: var(--sub-font-color);
+    margin-left: 5px;
+    display: inline-flex;
+    justify-self: baseline;
+    font-family: "Pretendard-Regular";
+}
+.price-text {
+    font-size: 14px;
+    color: var(--sub-font-color);
+    margin-left: 5px;
+    justify-self: baseline;
+    font-family: "Pretendard-Regular";
 }
 
 .care-details dl {
@@ -167,17 +243,20 @@
 .care-details dt {
     color: #666;
     font-size: 14px;
+    font-family: "Pretendard-Regular";
 }
 
 .care-details dd {
     color: #333;
     font-weight: 500;
+    font-family: "Pretendard-Regular";
 }
 
 /* 특이사항 */
 .note-text {
     line-height: 1.6;
     color: #444;
+    font-family: "Pretendard-Regular";
 }
 
 /* 버튼 스타일 */
@@ -190,7 +269,6 @@
 .action-buttons button {
     padding: 16px;
     border-radius: 12px;
-    border: none;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -199,12 +277,14 @@
 
 .apply-button {
     flex: 2;
-    background: rgb(189, 118, 255);
-    color: white;
+    background: #fff;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
 }
 
 .apply-button:hover {
     background: rgb(95, 0, 128);
+    color: #fff;
 }
 
 /* 반응형 디자인 */
@@ -227,16 +307,17 @@
     }
 }
 .delete-btn {
-    background-color: #8b00ff;
-    color: white;
-    padding: 8px 16px;
-    border: none;
+    background-color: #fff;
+    border: 1px solid var(--sub-color);
+    color: var(--sub-color);
+    padding: 6px 16px;
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
 }
 
 .delete-btn:hover {
-    background-color: #6a00cc;
+    background-color: var(--sub-color);
+    color: #fff;
 }
 
