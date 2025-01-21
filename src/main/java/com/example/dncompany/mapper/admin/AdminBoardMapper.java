@@ -3,6 +3,7 @@ package com.example.dncompany.mapper.admin;
 
 import com.example.dncompany.dto.admin.board.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,7 @@ public interface AdminBoardMapper {
 
 
     //테스트 이벤트 게시판 조회용
-    List<AdminEventWriteDTO> selectAllEvents();
+    AdminEventWriteDTO selectAllEvents(@Param("eventId")long eventId);
 
 //  통합 삭제용 딜리트 메소드들 조립 예정
     int deleteZipBoards(Map<String, List<Long>> params);

@@ -103,17 +103,18 @@
 <!--          </div>-->
 <!--        </div>-->
         <div class="main__festival">
-        <h3><img src="/images/logo/logo_banner2.png" alt="로고배너" class="main__event__logo"><br><span>&nbsp;EVENT!</span></h3>
-        <div class="main__festival__box">
-          <div class="main__festival__item" th:each="board : ${maineventDTOList}">
-            <div class="main__festival__item__in">
-              <img th:src="@{/images/logo/logo_header3.png}" alt="게시글 썸네일" th:if="${board.eventUuid == null}"/>
-              <img th:src="@{'/upload/event/' + ${board.eventPath} + '/th_' + ${board.eventUuid} + ${board.eventExtension}}" alt="게시글 썸네일" th:unless="${board.eventUuid == null}"/>
+          <h3><img src="/images/logo/logo_banner2.png" alt="로고배너" class="main__event__logo"><br><span>&nbsp;EVENT!</span></h3>
+          <div class="main__festival__box">
+            <div class="main__festival__item" th:each="board : ${maineventDTOList}">
+              <a th:href="@{/admin/event/test(eventId=${board.eventId})}">
+                <div class="main__festival__item__in">
+                  <img th:src="@{/images/logo/logo_header3.png}" alt="게시글 썸네일" th:if="${board.eventUuid == null}"/>
+                  <img th:src="@{'/upload/event/' + ${board.eventPath} + '/th_' + ${board.eventUuid} + ${board.eventExtension}}" alt="게시글 썸네일" th:unless="${board.eventUuid == null}"/>
+                </div>
+                <div class="main__festival__title" th:text="${board.eventTitle}">
+                </div>
+              </a>
             </div>
-            <div class="main__festival__title" th:text="${board.eventTitle}">
-              <p>1</p>
-            </div>
-          </div>
         </div>
 <!--          <div class="main__festival__item">-->
 <!--            <div class="main__festival__item__in"></div>-->
@@ -123,7 +124,7 @@
 <!--          </div>-->
         </div>
 
-      </div>
+  </div>
 
       <div th:insert="~{/openAiChat/open_ai_chat}"></div>
 
