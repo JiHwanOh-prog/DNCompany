@@ -35,17 +35,25 @@
         /* 검색 쿼리 실행 */
         SELECT RNUM, HELP_ID, HELP_TITLE, HELP_CARE_TYPE, HELP_ADDRESS,
             HELP_POINT, HELP_PRICE, HELP_CARE_DATE, HELP_CREATED_AT,
-            HELP_START_TIME, HELP_END_TIME
+            HELP_START_TIME, HELP_END_TIME, IS_ACCEPTED
         FROM (
             SELECT ROWNUM AS RNUM, HELP_ID, HELP_TITLE, HELP_CARE_TYPE, HELP_ADDRESS,
                 HELP_POINT, HELP_PRICE, HELP_CARE_DATE, HELP_CREATED_AT,
-                HELP_START_TIME, HELP_END_TIME
+                HELP_START_TIME, HELP_END_TIME, IS_ACCEPTED
             FROM (
                 SELECT
-                    HELP_ID, HELP_TITLE, HELP_CARE_TYPE, HELP_ADDRESS,
-                    HELP_POINT, HELP_PRICE, HELP_CARE_DATE, HELP_CREATED_AT,
-                    HELP_START_TIME, HELP_END_TIME
-                FROM HELP_BOARD
+                    HB.HELP_ID, HB.HELP_TITLE, HB.HELP_CARE_TYPE, HB.HELP_ADDRESS,
+                    HB.HELP_POINT, HB.HELP_PRICE, HB.HELP_CARE_DATE, HB.HELP_CREATED_AT,
+                    HB.HELP_START_TIME, HB.HELP_END_TIME,
+                    CASE
+                    WHEN EXISTS(
+                        SELECT 1
+                        FROM HELP_OFFER HO
+                        WHERE HO.HELP_ID = HB.HELP_ID AND HELP_OFFER_STATUS = 'ACCEPT'
+                    ) THEN 1
+                    ELSE 0
+                    END AS IS_ACCEPTED
+                FROM HELP_BOARD HB
                 <trim prefix="WHERE" prefixOverrides="AND">
                     <if test="cond.sido != null and cond.sido != ''">
                         AND HELP_ADDRESS LIKE '%' || #{cond.sido} || '%'

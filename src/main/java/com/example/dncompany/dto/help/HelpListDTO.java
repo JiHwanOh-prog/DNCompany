@@ -20,4 +20,5 @@ public class HelpListDTO {
     private LocalDateTime helpCreatedAt;
     private LocalDateTime helpStartTime;
     private LocalDateTime helpEndTime;
+    private boolean isAccepted;
 }
