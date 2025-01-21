@@ -66,7 +66,7 @@
             <a class="main__hot__item" th:href="@{/dn/detail(dnId=${board.dnId})}" th:each="board : ${maindnDTOList}">
               <div class="main__hot__item__in" >
                 <img th:src="@{/images/logo/logo_header3.png}" alt="게시글 썸네일" th:if="${board.productUuid == null}"/>
-                <img th:src="@{'/upload/dn/' + ${board.productUuid} + '/th_' + ${board.productUuid} + ${board.productExtension}}" alt="게시글 썸네일" th:unless="${board.productUuid == null}"/>
+                <img th:src="@{'/upload/dn/' + ${board.productPath} + '/th_' + ${board.productUuid} + ${board.productExtension}}" alt="게시글 썸네일" th:unless="${board.productUuid == null}"/>
               </div>
               <div class="main__hot__title">
                 <p th:text="${board.dnTitle}">1</p>  <!-- dnTitle을 출력 -->
