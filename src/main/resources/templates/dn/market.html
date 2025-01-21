@@ -31,12 +31,12 @@
                         <div class="shopLayout_shoppingTopArea">
                             <!-- 검색창 -->
                             <form class="search-form" th:action="@{/dn/market}" method="get">
-                                <input type="hidden" name="petCategory" th:value="${searchDTO.dnPetCategory}"/>
+                                <input type="hidden" name="dnPetCategory" th:value="${searchDTO.dnPetCategory}"/>
                                 <input type="hidden" name="productCategory" th:value="${searchDTO.productCategory}"/>
                                 <input type="hidden" name="order" th:value="${searchDTO.order}"/>
                                 <div class="shopSearch_inputContainer">
                                     <div class="shopLayout_shoppingTopArea">
-                                        <input type="text" class="shopSearch_searchInput" placeholder="구매를 원하는 물건이 있나요?" maxlength="130" enterkeyhint="search" th:value="${searchDTO.keyword}"/>
+                                        <input type="text" class="shopSearch_searchInput" placeholder="구매를 원하는 물건이 있나요?" maxlength="130" enterkeyhint="search" name="keyword" th:value="${searchDTO.keyword}"/>
                                         <button type="submit" class="shopSearch_searchBtn">
                                             <img class="shopSearch_searchIcon" src="https://bemypet.kr/_next/static/media/ICON-24px-Search.318147fc.svg"/>
                                         </button>
@@ -48,10 +48,10 @@
                             <!-- 동물 분류 -->
                             <div class="category_box">
                             <div class="shopLayout_animalLabelContainer">
-                                <a th:href="@{/dn/market(dnPetCategory='dog', order=${searchDTO.order}, productCategory=${searchDTO.productCategory})}" class="SubView-tab-t1" data-category="dog">강아지</a>
-                                <a th:href="@{/dn/market(dnPetCategory='cat', order=${searchDTO.order}, productCategory=${searchDTO.productCategory})}" class="SubView-tab-t1" data-category="cat">고양이</a>
-                                <a th:href="@{/dn/market(dnPetCategory='smallPet', order=${searchDTO.order}, productCategory=${searchDTO.productCategory})}" class="SubView-tab-t1" data-category="smallPet">소동물</a>
-                                <a th:href="@{/dn/market(dnPetCategory='otherPet', order=${searchDTO.order}, productCategory=${searchDTO.productCategory})}" class="SubView-tab-t1" data-category="otherPet">기타</a>
+                                <a th:href="@{/dn/market(dnPetCategory='dog', order=${searchDTO.order}, productCategory=${searchDTO.productCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="dog">강아지</a>
+                                <a th:href="@{/dn/market(dnPetCategory='cat', order=${searchDTO.order}, productCategory=${searchDTO.productCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="cat">고양이</a>
+                                <a th:href="@{/dn/market(dnPetCategory='smallPet', order=${searchDTO.order}, productCategory=${searchDTO.productCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="smallPet">소동물</a>
+                                <a th:href="@{/dn/market(dnPetCategory='otherPet', order=${searchDTO.order}, productCategory=${searchDTO.productCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="otherPet">기타</a>
                                 <a th:href="@{/dn/market}" class="SubView-tab-t1">전체</a>
                             </div>
 
@@ -60,19 +60,19 @@
                         <nav class="categoryHeader_contentHeaderWrapper">
                             <div class="categoryHeader_contentHeaderBox">
                                 <div class="categoryHeader_contentHeaderList">
-                                    <a th:href="@{/dn/market(productCategory='snack', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="snack">간식</a>
-                                    <a th:href="@{/dn/market(productCategory='mat', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="mat">매트</a>
-                                    <a th:href="@{/dn/market(productCategory='feed', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="feed">사료</a>
-                                    <a th:href="@{/dn/market(productCategory='dish', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="dish">식기</a>
-                                    <a th:href="@{/dn/market(productCategory='nutrition', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="nutrition">영양제</a>
-                                    <a th:href="@{/dn/market(productCategory='health', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="health">위생</a>
-                                    <a th:href="@{/dn/market(productCategory='cage', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="cage">이동장</a>
-                                    <a th:href="@{/dn/market(productCategory='toy', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="toy">장난감</a>
-                                    <a th:href="@{/dn/market(productCategory='house', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="house">집/하우스</a>
-                                    <a th:href="@{/dn/market(productCategory='fashion', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="fashion">패션</a>
-                                    <a th:href="@{/dn/market(productCategory='petAppliances', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="petAppliances">펫가전</a>
-                                    <a th:href="@{/dn/market(productCategory='snood', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="snood">하네스/줄</a>
-                                    <a th:href="@{/dn/market(productCategory='pestPreventionProducts', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory})}" class="SubView-tab-t1" data-category="pestPreventionProducts">해충방지용품</a>
+                                    <a th:href="@{/dn/market(productCategory='snack', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="snack">간식</a>
+                                    <a th:href="@{/dn/market(productCategory='mat', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="mat">매트</a>
+                                    <a th:href="@{/dn/market(productCategory='feed', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="feed">사료</a>
+                                    <a th:href="@{/dn/market(productCategory='dish', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="dish">식기</a>
+                                    <a th:href="@{/dn/market(productCategory='nutrition', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="nutrition">영양제</a>
+                                    <a th:href="@{/dn/market(productCategory='health', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="health">위생</a>
+                                    <a th:href="@{/dn/market(productCategory='cage', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="cage">이동장</a>
+                                    <a th:href="@{/dn/market(productCategory='toy', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="toy">장난감</a>
+                                    <a th:href="@{/dn/market(productCategory='house', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="house">집/하우스</a>
+                                    <a th:href="@{/dn/market(productCategory='fashion', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="fashion">패션</a>
+                                    <a th:href="@{/dn/market(productCategory='petAppliances', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="petAppliances">펫가전</a>
+                                    <a th:href="@{/dn/market(productCategory='snood', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="snood">하네스/줄</a>
+                                    <a th:href="@{/dn/market(productCategory='pestPreventionProducts', order=${searchDTO.order}, dnPetCategory=${searchDTO.dnPetCategory}, keyword=${searchDTO.keyword})}" class="SubView-tab-t1" data-category="pestPreventionProducts">해충방지용품</a>
                                 </div>
                             </div>
                         </nav>
@@ -152,17 +152,32 @@
                     <!-- 페이지 영역 -->
                     <div class="pagination">
                         <a th:if="${pageDTO.hasPreviousGroup()}"
-                           th:href="@{/dn/market(page=${pageDTO.startPage - 1})}"
+                           th:href="@{/dn/market(page=${pageDTO.startPage - 1},
+                                   searchType=${searchDTO.searchType},
+                                   keyword=${searchDTO.keyword},
+                                   order=${searchDTO.order},
+                                   dnPetCategory=${searchDTO.dnPetCategory},
+                                   productCategory=${searchDTO.productCategory})}"
                            class="page-btn prev">‹
                         </a>
                         <a th:each="i : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}"
-                           th:href="@{/dn/market(page=${i})}"
+                           th:href="@{/dn/market(page=${i},
+                                   searchType=${searchDTO.searchType},
+                                   keyword=${searchDTO.keyword},
+                                   order=${searchDTO.order},
+                                   dnPetCategory=${searchDTO.dnPetCategory},
+                                   productCategory=${searchDTO.productCategory})}"
                            class="page-btn"
                            th:classappend="${i == pageDTO.page ? 'active' : ''}"
                            th:text="${i}">1
                         </a>
                         <a th:if="${pageDTO.hasNextGroup()}"
-                           th:href="@{/dn/market(page=${pageDTO.endPage + 1})}"
+                           th:href="@{/dn/market(page=${pageDTO.endPage + 1},
+                                   searchType=${searchDTO.searchType},
+                                   keyword=${searchDTO.keyword},
+                                   order=${searchDTO.order},
+                                   dnPetCategory=${searchDTO.dnPetCategory},
+                                   productCategory=${searchDTO.productCategory})}"
                            class="page-btn next">&gt;
                         </a>
                     </div>

@@ -165,7 +165,8 @@
                                 <p>쪽지 내용</p>
                                 <label for="msContent"></label>
                                 <textarea class="message__content_box" id="msContent" name="msContent"
-                                          placeholder="쪽지의 내용을 작성해주세요."></textarea>
+                                          placeholder="쪽지의 내용을 작성해주세요."
+                                          th:text="${messageContent}"></textarea>
                             </div>
 
                             <div class="message__botton">
