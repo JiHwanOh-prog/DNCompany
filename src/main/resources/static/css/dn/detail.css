@@ -24,7 +24,8 @@
 }
 
 .mylabel_activeLabel {
-  height: 22px;
+  /*height: 22px;*/
+  padding: 7px 15px;
   font-family: "Ownglyph_ParkDaHyun";
   font-size: 20px;
   text-align: center;
@@ -33,7 +34,6 @@
   border: none;
   border-radius: 8px;
   display: inline-block;
-  padding: 1px 15px;
   letter-spacing: 2px;
 }
 
@@ -102,29 +102,30 @@
   /*font-size: 15px;*/
   /*line-height: 180%;*/
   /*letter-spacing: 1px;*/
+  min-height: 500px;
 }
 
 
 .product_dn_status{
   width: 80px;
-  height: 20px;
-  line-height: 20px;
-  background: #4CAF50;
+  padding: 5px 0;
+  margin-bottom: 10px;
   border-radius: 5px;
-  color: white;
-  align-content: center;
-  display: flex;
-  justify-content: center;
+  text-align: center;
   font-family: "Ownglyph_ParkDaHyun";
   font-size: 20px;
 }
 
 .product_dn_status.pending {
-  background: rgb(189, 118, 255); /* 판매중 상태 색상 */
+  background-color: var(--sub-color);
+  color: white;
+  border: 1px solid var(--sub-color);
 }
 
 .product_dn_status.complete {
-  background: #4CAF50; /* 거래완료 상태 색상 */
+  background-color: var(--main-color);
+  color: white;
+  border: 1px solid var(--main-color);
 }
 
 /* 판매 금액 스타일 */
@@ -179,19 +180,20 @@
 /* 판매자와 대화 버튼 스타일 */
 .chat_button {
   padding: 10px 5px;
-  border: none;
-  background-color: #4caf50;
-  color: white;
+  border: 1px solid var(--main-color);
+  background-color: white;
+  color: var(--main-color);
   font-size: 12px;
   font-weight: 600;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s;
   width: 130px;
-}
 
-.chat_button:hover {
-  background-color: #45a049;
+  &:hover{
+    color: white;
+    background-color: var(--main-color);
+  }
 }
 
 /* 작성글 삭제/수정 버튼 */
@@ -246,6 +248,32 @@
   text-align: center;
   cursor: pointer;
 }
+
+/* 글 목록 버튼 */
+/* 글 목록 버튼 */
+.go-to-list-btn {
+  font-family: "Ownglyph_ParkDaHyun";
+  font-size: 20px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  padding: 0 12px;
+  border-radius: 15px;
+  background-color: #fff;
+  line-height: 34px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.go-to-list-btn:hover {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
 
 /* 작성자 정보 */
 .product_qaDetailInfo {
@@ -431,4 +459,30 @@
       }
     }
   }
+}
+
+/* 상품 정보 상단부분 스타일 */
+.product_dn_top__container{
+  display: flex;
+  gap: 40px;
+}
+
+.product_dn_top__img{
+  border-right: 1px solid #dbdbdb;
+  padding: 10px 40px 10px 20px;
+
+  img {
+    width: 300px;
+  }
+}
+
+.product_dn_top__container{
+  margin : 50px 0;
+  border: 1px solid #dbdbdb;
+  padding : 20px;
+  border-radius: 10px;
+}
+
+.product_dn_top__info{
+  padding : 10px 0;
 }
