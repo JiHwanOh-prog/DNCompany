@@ -35,3 +35,31 @@ $form.addEventListener('submit', function (e) {
         return;
     }
 });
+
+// {   // 아이디 저장
+//     const $saveIdBox = document.querySelector('#saveId');
+//
+//     $saveIdBox.addEventListener('change', (e) => {
+//         console.log($saveIdBox.value);
+//     });
+//
+//     console.log('hi')
+//
+//
+//
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
