@@ -54,10 +54,26 @@ public class QnaController {
 
     // 상세글
     @GetMapping("/detail")
-    public String detail(Long qnaId, Model model) {
+    public String detail(Long qnaId,
+                         @SessionAttribute(value = "usersId", required = false) Long usersId,
+                         RedirectAttributes redirectAttributes,
+                         Model model) {
+        if (usersId == null) {
+            redirectAttributes.addAttribute("error", "requiredLogin");
+            return "redirect:/user/login";
+        }
 
         QnADetailDTO foundQna = qnaService.getQnAById(qnaId);
         model.addAttribute("qna", foundQna);
+
+        Long qnaUsersId = foundQna.getUsersId();
+
+        System.out.println("qnaUsersId = " + qnaUsersId);
+
+        if (!qnaUsersId.equals(usersId)) {
+            redirectAttributes.addAttribute("error", "unauthorized");
+            return "redirect:/qna/list";
+        }
 
         return "qna/detail";
     }
