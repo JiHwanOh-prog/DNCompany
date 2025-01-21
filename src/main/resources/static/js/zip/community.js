@@ -20,45 +20,6 @@
     });
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const $qaListDateTime = document.querySelectorAll(".qaList_communityType");
-//
-//     $qaListDateTime.forEach(element => {
-//         const updatedAt = element.getAttribute("data-updated-at");
-//
-//         if (updatedAt) {
-//             const formattedTime = timeForToday(updatedAt);
-//
-//             element.textContent = `수정일 : ${formattedTime}`;
-//         }
-//     });
-// });
-//
-// function timeForToday(value) {
-//     const today = new Date();
-//     const timeValue = new Date(value);
-//
-//
-//     const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
-//
-//     if (betweenTime < 1) { return "방금 전"; }
-//
-//     if (betweenTime < 60) {
-//         return `${betweenTime}분 전`;
-//     }
-//
-//     const betweenTimeHour = Math.floor(betweenTime / 60);
-//     if (betweenTimeHour < 24) {
-//         return `${betweenTimeHour}시간 전`;
-//     }
-//
-//     const betweenTimeDay = Math.floor(betweenTimeHour / 24);
-//     if (betweenTimeDay < 365) {
-//         return `${betweenTimeDay}일 전`;
-//     }
-//
-//     return `${Math.floor(betweenTimeDay / 365)}년 전`;
-// }
 
 document.addEventListener("DOMContentLoaded", function () {
     const tabLinks = document.querySelectorAll(".SubView-tab-t1");
@@ -91,6 +52,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+/*document.addEventListener("DOMContentLoaded", () => {
+    const $qaListDateTime = document.querySelectorAll(".qaList_communityDate");
+
+    $qaListDateTime.forEach(element => {
+        const zipUpdatedAt = element.getAttribute("data-updated-at");
+
+        if (zipUpdatedAt) {
+            const formattedTime = timeForToday(zipUpdatedAt);
+
+            element.textContent = `수정일 : ${formattedTime}`;
+        }
+    });
+});
+
+function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+
+
+    const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+
+    if (betweenTime < 1) { return "방금 전"; }
+
+    if (betweenTime < 60) {
+        return `${betweenTime}분 전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+        return `${betweenTimeHour}시간 전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTimeHour / 24);
+    if (betweenTimeDay < 365) {
+        return `${betweenTimeDay}일 전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년 전`;
+}*/
 
 
 

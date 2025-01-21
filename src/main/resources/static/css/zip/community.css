@@ -292,6 +292,7 @@
 
 .qaList_qaListContainer {
   padding: 9px 0;
+  font-family: "Pretendard-Regular";
 }
 
 .qaList_qaListWrapper {
@@ -307,10 +308,7 @@
   gap: 10px;
 }
 
-.qaList_communityType {
-  font-weight: 700;
-  font-size: 22px;
-}
+
 
 .qaList_labelListWrapper {
   display: flex;
@@ -398,6 +396,11 @@
 
 .qaList_communityType {
   font-size: 13px;
+}
+
+.qaList_communityDate {
+  font-size: 13px;
+
 }
 
 .qaList_labelWrapper {
