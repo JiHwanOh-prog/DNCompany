@@ -49,8 +49,8 @@ public class MypageController {
 
         //도와주세요
 
-        List<HelpMeListDTO> MypageMainHelpMeList = mypageService.MyPageMainHelpMeListById(usersId);
-        model.addAttribute("mainHelpMeList", MypageMainHelpMeList);
+        List<HelpMeListDTO> mypageMainHelpMeList = mypageService.MyPageMainHelpMeListById(usersId);
+        model.addAttribute("mainHelpMeList", mypageMainHelpMeList);
 //        log.info("MypageMainHelpMeList: {}", MypageMainHelpMeList);
 
         LocalDateTime today = LocalDateTime.now();

@@ -60,6 +60,12 @@ public class HelpService {
                 .orElseThrow(() -> new HelpNotFoundException("게시글을 찾을 수 없습니다."));
     }
 
+    // 특정 회원이 이미 신청한 help 여부
+    public boolean isHelpAlreadyApplied(Long helpId, Long usersId) {
+        return helpMapper.checkHelpOfferExistsAlready(helpId, usersId) > 0;
+    }
+
+
     // 검색
     public PageDTO<HelpListDTO> searchHelpList(HelpSearchDTO searchDTO, PageRequestDTO pageRequestDTO) {
         log.info("검색 서비스 호출 - 검색조건: {}", searchDTO);
