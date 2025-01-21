@@ -12,7 +12,6 @@ import com.example.dncompany.exception.user.UserNotFoundException;
 import com.example.dncompany.mapper.user.MypageMapper;
 import com.example.dncompany.mapper.user.MypagePetImageMapper;
 import com.example.dncompany.service.openAichat.GeminiService;
-import com.example.dncompany.service.sms.SmsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +25,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 
@@ -117,7 +115,7 @@ public class MypageService {
     public List<HelpMeListDTO> MyPageMainHelpMeListById(Long usersId) {
         log.debug("ServiceMyPageMainHelpMeListById:{}", usersId);
 
-        return mypageMapper.MyPageMainHelpMeListById(usersId);
+        return mypageMapper.myPageMainHelpMeListById(usersId);
 
     }
 

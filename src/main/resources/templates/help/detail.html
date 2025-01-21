@@ -113,9 +113,11 @@
 
           <!-- 신청하기 버튼 -->
           <div class="action-buttons">
-            <button class="apply-button" th:onclick="|applyForCare(${helpDetail.helpId})|"
-            th:if="${!isAccepted}">돌봄 신청하기</button>
-            <button class="apply-button" th:if="${isAccepted}" disabled>돌봄 신청 마감</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'AVAILABLE'}"
+                    th:onclick="|applyForCare(${helpDetail.helpId})|">돌봄 신청하기</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'CLOSED'}" disabled>돌봄 신청 마감</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'APPLIED'}" disabled>이미 신청한 글</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'CLOSED_AND_APPLIED'}" disabled>마감된 글 (신청 완료)</button>
           </div>
           </div>
         </article>

@@ -34,7 +34,7 @@ public interface MypageMapper {
 
     //게시글 요약
 
-    List<HelpMeListDTO> MyPageMainHelpMeListById(Long usersId);
+    List<HelpMeListDTO> myPageMainHelpMeListById(Long usersId);
 
     List<HelpYouListDTO> MyPageMainHelpYouListById(Long usersId);
 

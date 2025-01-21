@@ -11,7 +11,7 @@
 
 
     <script defer th:src="@{/js/fragment/header.js}"></script>
-    <script defer th:src="@{/js/user/mypage/mypage_main.js}" ></script>
+    <script defer th:src="@{/js/user/mypage/mypage_main.js}"></script>
 
 
     <title>Document</title>
@@ -78,33 +78,34 @@
 
                                     <!-- 반려동물 리스트 -->
                                     <th:block th:if="${!petList.isEmpty()}">
-                                    <div class="mypage_main_pet_list" th:each="pet : ${petList}" th:object="${pet}">
-                                        <div class="mypage_main_pet_content">
-                                            <div class="mypage_main_pet_img">
-                                                <img class="mypage_main_pet_image"
-                                                     th:src="@{'/upload/pet/' + *{petImagePath} + '/' + *{petUuid} + *{petExtension} }"
-                                                     alt="반려동물 사진"/>
+                                        <div class="mypage_main_pet_list" th:each="pet : ${petList}" th:object="${pet}">
+                                            <div class="mypage_main_pet_content">
+                                                <div class="mypage_main_pet_img">
+                                                    <img class="mypage_main_pet_image"
+                                                         th:src="@{'/upload/pet/' + *{petImagePath} + '/' + *{petUuid} + *{petExtension} }"
+                                                         alt="반려동물 사진"/>
+                                                </div>
+                                                <ul class="mypage_main_pet_profile">
+                                                    <li th:text="'이름: ' + *{petName}"> 코코</li>
+                                                    <li th:text="'나이: ' + *{petAge}"> 2살</li>
+                                                    <li th:text="'성별: ' + *{petGender}"> 암컷</li>
+                                                    <li th:text="'생일: ' + *{petBirthDate}"> 2022-01-01</li>
+                                                    <li th:text="'입양일: ' + *{adoptionDate}"> 2022-03-01</li>
+                                                </ul>
+
                                             </div>
-                                            <ul class="mypage_main_pet_profile">
-                                                <li th:text="'이름: ' + *{petName}"> 코코</li>
-                                                <li th:text="'나이: ' + *{petAge}"> 2살</li>
-                                                <li th:text="'성별: ' + *{petGender}"> 암컷</li>
-                                                <li th:text="'생일: ' + *{petBirthDate}"> 2022-01-01</li>
-                                                <li th:text="'입양일: ' + *{adoptionDate}"> 2022-03-01</li>
-                                            </ul>
+                                            <div class="pet-add-delete-btn">
+                                                <a th:href="@{/mypage/update/pet(petId=*{petId})}">수정</a>
+                                                <a th:href="@{/mypage/delete/pet(petId=*{petId})}">삭제</a>
+                                            </div>
 
                                         </div>
-                                        <div class="pet-add-delete-btn">
-                                            <a th:href="@{/mypage/update/pet(petId=*{petId})}">수정</a>
-                                            <a th:href="@{/mypage/delete/pet(petId=*{petId})}">삭제</a>
-                                        </div>
-
-                                    </div>
                                     </th:block>
                                     <th:block th:unless="${!petList.isEmpty()}">
-                                    <div class="mypage_main_pet_list">
-                                        <img class="petListnullimg" th:src="@{/images/logo/logo_banner2.png}" alt="반려동물 등록 없을 시 띄우는 로고">
-                                    </div>
+                                        <div class="mypage_main_pet_list">
+                                            <img class="petListnullimg" th:src="@{/images/logo/logo_banner2.png}"
+                                                 alt="반려동물 등록 없을 시 띄우는 로고">
+                                        </div>
                                     </th:block>
 
                                     <!-- 다음 버튼 -->
@@ -155,19 +156,24 @@
                                     <tr class="main-help-me-list" th:each="help:${mainHelpMeList}" th:object="${help}"
                                         th:data-help-id="${help.helpId}">
                                         <td th:text="*{rnum}"></td>
-                                        <td class="help_title"><a th:href="@{/help/detail(helpId=*{helpId})}" th:text="*{helpTitle}"></a></td>
+                                        <td class="help_title"><a th:href="@{/help/detail(helpId=*{helpId})}"
+                                                                  th:text="*{helpTitle}"></a></td>
                                         <td th:text="*{helpCareType}"></td>
                                         <td th:text="*{helpCreatedAt}"></td>
                                         <td th:text="*{helpCareDate}"></td>
                                         <td>
-                                               <div th:if="${today.isAfter(help.helpEndTime) and !(help.reviewCount>0) } " >
-                                            <button type="button" class="review-btn mypage_review_button"
-                                                    th:data-help-offer-id="*{helpOfferId}"
-                                                    th:data-help-id="*{helpId}">후기</button>
-                                            <button type="button" class="report-btn mypage_review_button"
-                                                    th:data-help-offer-id="*{helpOfferId}">신고</button>
-                                               </div>
-                                            <div th:if="${help.reviewCount>0}">
+                                            <div th:if="${today.isAfter(help.helpEndTime) and !(help.reviewCount > 0) and (help.isAccepted()) and !(help.reportCount > 0)} ">
+                                                <button type="button" class="review-btn mypage_review_button"
+                                                        th:data-help-offer-id="*{helpOfferId}"
+                                                        th:data-help-id="*{helpId}">후기
+                                                </button>
+                                                <button type="button" class="report-btn mypage_review_button"
+                                                        th:data-help-offer-id="*{helpOfferId}">신고
+                                                </button>
+                                            </div>
+                                            <div th:if="${!help.isAccepted()}">대기 중</div>
+                                            <div th:if="${help.reportCount > 0}">신고 완료</div>
+                                            <div th:if="${help.reviewCount > 0}">
                                                 작성 완료
                                             </div>
 
@@ -175,7 +181,8 @@
 
                                         <td>
                                             <button type="button" class="testBtn" th:if="*{!isAccepted}">
-                                            <a th:href="@{/mypage/list/helpyou(helpId=*{helpId})}"><img src="/images/user/mypage/more.png" alt="더보기" class="testBtnImg"></a>
+                                                <a th:href="@{/mypage/list/helpyou(helpId=*{helpId})}"><img
+                                                        src="/images/user/mypage/more.png" alt="더보기" class="testBtnImg"></a>
                                             </button>
                                             <span th:unless="*{!isAccepted}">
                                                 매칭완료
@@ -189,20 +196,22 @@
                             </div>
 
                             <!-- 모달창 -->
-                            <div class="review_modal_box" >
+                            <div class="review_modal_box">
                                 <div class="review__top">
                                     <p><span>도와주세요</span> REVIEW</p>
                                     <p>리뷰 작성</p>
                                 </div>
                                 <form>
                                     <div>
-                                        <textarea id="reviewTitle" class="title_box" placeholder="리뷰 제목을 입력해주세요."></textarea>
+                                        <textarea id="reviewTitle" class="title_box"
+                                                  placeholder="리뷰 제목을 입력해주세요."></textarea>
                                     </div>
                                     <div in></div>
                                     <div class="review__star">
                                         <div class="star_rating">
                                             <p>별점 &nbsp;</p>
-                                            <input type="hidden" id="reviewStringRating" name="reviewStringRating" value="" />
+                                            <input type="hidden" id="reviewStringRating" name="reviewStringRating"
+                                                   value=""/>
                                             <span class="star" data-value="1"></span>
                                             <span class="star" data-value="2"></span>
                                             <span class="star" data-value="3"></span>
@@ -210,7 +219,8 @@
                                             <span class="star" data-value="5"></span>
                                         </div>
                                     </div>
-                                    <textarea id="reviewContent" class="content_box" placeholder="리뷰 내용을 작성해주세요."></textarea>
+                                    <textarea id="reviewContent" class="content_box"
+                                              placeholder="리뷰 내용을 작성해주세요."></textarea>
                                     <div class="review__botton">
                                         <button type="button" class="review_btn">확인</button>
                                         <button type="button" class="review_btn review-cancel-btn">취소</button>
@@ -226,18 +236,17 @@
                                 </div>
                                 <form>
                                     <div>
-                                        <textarea id="reportTitle" class="title_box" placeholder="신고 제목을 입력해주세요."></textarea>
+                                        <textarea id="reportTitle" class="title_box"
+                                                  placeholder="신고 제목을 입력해주세요."></textarea>
                                     </div>
-                                    <textarea id="reportContent" class="content_box" placeholder="신고 사유를 작성해주세요."></textarea>
+                                    <textarea id="reportContent" class="content_box"
+                                              placeholder="신고 사유를 작성해주세요."></textarea>
                                     <div class="report__botton">
                                         <button type="button" class="report_btn">신고</button>
                                         <button type="button" class="report_btn report-cancel-btn">취소</button>
                                     </div>
                                 </form>
                             </div>
-
-
-
 
 
                         </div>

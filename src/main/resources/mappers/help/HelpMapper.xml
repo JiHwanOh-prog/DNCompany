@@ -87,6 +87,13 @@
         WHERE HELP_ID=#{helpId} AND HELP_OFFER_STATUS='ACCEPT'
     </select>
 
+
+    <select id="checkHelpOfferExistsAlready" resultType="_int">
+        SELECT COUNT(*)
+        FROM HELP_OFFER HO
+        WHERE HO.HELP_ID=#{helpId} AND HO.USERS_ID=#{usersId}
+    </select>
+
     <!-- 전체 게시글 수 조회 -->
     <select id="getTotalCount" resultType="int">
         SELECT COUNT(*)
