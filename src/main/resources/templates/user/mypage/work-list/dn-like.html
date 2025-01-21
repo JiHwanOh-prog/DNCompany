@@ -60,10 +60,9 @@
                                 <p><span class="like-product-info-title">가격 : </span><span
                                         class="like-product-info-content"> <span th:text="*{productPrice}">10000</span> 원</span></p>
                             </div>
-
                         </div>
                     </td>
-                    <td th:text="${dn.sellerNickname} + '(' + ${dn.sellerLoginId} +')'">샘플 판매자 정보</td>
+                    <td th:text="${dn.sellerNickname} == null ? ${dn.sellerLoginId} : ${dn.sellerNickname} + '(' + ${dn.sellerLoginId} +')'">샘플 판매자 정보</td>
                 </tr>
 
 
