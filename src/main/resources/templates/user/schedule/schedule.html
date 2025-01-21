@@ -48,11 +48,15 @@
                       </div>
                     </a>
                   </div>
-                  <div class="no-schedule" th:unless="${scheduleList != null} or ${scheduleList.isEmpty()}">
+                </th:block>
+                <th:block th:if="${scheduleList == null} or ${scheduleList.isEmpty()}">
+                  <!-- 스케줄이 없는 경우 -->
+                  <div class="no-schedule">
                     <span>오늘은 스케쥴이 없습니다.</span>
                   </div>
                 </th:block>
-                <!-- 스케줄이 없는 경우 -->
+
+
 
               </div>
             </div>
