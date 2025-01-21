@@ -346,7 +346,7 @@
         EVENT_CONTENT,
         USERS_ID )
         VALUES (
-        #{eventBoardId},      <!-- SEQ_EVENT_BOARD.nextval 대신 selectKey에서 받은 값 사용 -->
+        #{eventBoardId},
         #{eventTitle},
         #{eventContent},
         #{usersId} )
@@ -357,14 +357,14 @@
 
     <select id="selectAllEvents" resultType="AdminEventWriteDTO">
         SELECT
-            EVENT_ID as eventBoardId,
+            EVENT_ID as eventId,
             EVENT_TITLE as eventTitle,
             EVENT_CONTENT as eventContent,
             EVENT_CREATED_AT as eventCreatedAt,
             EVENT_UPDATE_AT as eventUpdatedAt,
             USERS_ID as usersId
         FROM ADMIN.EVENT_BOARD
-        ORDER BY EVENT_ID DESC
+        WHERE EVENT_ID = #{eventId}
     </select>
 
     <!--  delete  -->

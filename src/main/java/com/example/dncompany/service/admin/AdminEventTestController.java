@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,10 +19,11 @@ public class AdminEventTestController {
     private final AdminEventTestService adminEventTestService;
 
     @GetMapping("/test")
-    public String testPage(Model model) {
+    public String testPage(@RequestParam Long eventId, Model model) {
         log.debug("====== Event Test Page Controller Start ======");
-        List<AdminEventWriteDTO> eventList = adminEventTestService.getAllEvents();
-        model.addAttribute("eventList", eventList);
+        log.debug("Requested Event ID: {}", eventId);
+        AdminEventWriteDTO event = adminEventTestService.getEventById(eventId);
+        model.addAttribute("event", event);  // 모델 속성 이름도 단수로 변경
         log.debug("====== Event Test Page Controller End ======");
         return "admin/admin_test/event_test";
     }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter @Setter @ToString
 public class AdminEventWriteDTO {
 
-   private long eventBoardId;
+   private long eventId;
    private String eventTitle;
    private String eventContent;
    private LocalDateTime eventCreatedAt;
