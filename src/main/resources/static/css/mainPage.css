@@ -140,7 +140,9 @@
       align-items: center;
 
       img {
-        width: 265px;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
       }
     }
 
