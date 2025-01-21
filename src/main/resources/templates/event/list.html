@@ -25,62 +25,69 @@
             <div class="main_searchContainer">
                 <div class="main_mainContents">
                     <!-- 메인 타이틀 -->
-                    <p class="main_mainTitle">우리들의 이벤트</p>
-                    <div class="main_mainGridContainer">
-                        <!-- 반복 구간 -->
-                        <div class="mainContent_mainContentBox" th:each="event : ${eventPageDTO.list}" th:object="${event}">
-                            <!-- 사진 박스 -->
-                            <div>
+<!--                    <p class="main_mainTitle">우리들의 이벤트</p>-->
+                    <div class="main__festival">
+                        <h3><img src="/images/logo/logo_banner2.png" alt="로고배너" class="main__event__logo">
+                            <br><span>&nbsp;EVENT!</span>
+                        </h3>
+                        <div class="main_mainGridContainer">
+                            <!-- 반복 구간 -->
+                            <div class="mainContent_mainContentBox" th:each="event : ${eventPageDTO.list}"
+                                 th:object="${event}">
+                                <!-- 사진 박스 -->
+                                <div>
                                 <span><img
                                         class="mainContent_mainImg"
                                         th:src="@{/images/logo/logo_banner2.png}"
                                         alt="게시글 썸네일" th:if="*{eventImgId == null}"/></span>
-                                <span><img
-                                        class="mainContent_mainImg"
-                                        th:src="@{'upoload/event/' + *{eventPath} + '/th_' + *{eventUuid} + *{eventExtension}}"
-                                        alt="게시글 썸네일" th:unless="*{eventImgId == null}"/>
+                                    <span><img
+                                            class="mainContent_mainImg"
+                                            th:src="@{'upoload/event/' + *{eventPath} + '/th_' + *{eventUuid} + *{eventExtension}}"
+                                            alt="게시글 썸네일" th:unless="*{eventImgId == null}"/>
                                 </span>
-                            </div>
-                            <div class="mainContent_mainbox">
-                                <!-- 글 박스 -->
-                                <div class="mainContent_mainContent">
-                                    <div class="mainContent_mainTitle" th:text="${event.eventTitle}">이벤트 제목</div>
-                                    <div class="mainContent_mainText" th:utext="${event.eventContent}">이벤트 내용</div>
                                 </div>
-                                <!-- 글 박스 하단 -->
-                                <div class="mainConent_mainInfo">
-                                    <!--                                    <div class="mainContent_subbox">이벤트 장소</div>-->
-                                    <div class="mainContent_subbox" th:text="'기간 : ' + ${event.eventCreatedAt}">이벤트 일정</div>
+                                <div class="mainContent_mainbox">
+                                    <!-- 글 박스 -->
+                                    <div class="mainContent_mainContent">
+                                        <div class="mainContent_mainTitle" th:text="${event.eventTitle}">이벤트 제목</div>
+                                        <div class="mainContent_mainText" th:utext="${event.eventContent}">이벤트 내용</div>
+                                    </div>
+                                    <!-- 글 박스 하단 -->
+                                    <div class="mainConent_mainInfo">
+                                        <!--                                    <div class="mainContent_subbox">이벤트 장소</div>-->
+                                        <div class="mainContent_subbox" th:text="'기간 : ' + ${event.eventCreatedAt}">이벤트
+                                            일정
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- 반복 구간 -->
+                            <!-- 반복 구간 -->
 
+                        </div>
+                        <!-- 페이지 영역 -->
+                        <section class="pagination-section">
+                            <div class="pagination">
+                                <a th:if="${eventPageDTO.hasPreviousGroup()}"
+                                   th:href="@{/event/list(page=${eventPageDTO.startPage - 1})}"
+
+                                   class="page-btn prev" aria-label="Go to previous group">‹</a>
+
+                                <a class="page-btn"
+                                   th:each="i : ${#numbers.sequence(eventPageDTO.startPage,eventPageDTO.endPage)}"
+                                   th:href="@{/event/list(page=${i})}"
+                                   th:classappend="${i == eventPageDTO ? 'active' : ''}"
+                                   th:text="${i}"
+                                >1</a>
+
+                                <a th:if="${eventPageDTO.hasNextGroup()}"
+                                   th:href="@{/event/list(page=${eventPageDTO.endPage + 1})}"
+
+                                   class="page-btn next" aria-label="Go to next group">›</a>
+                            </div>
+                        </section>
                     </div>
-                    <!-- 페이지 영역 -->
-                    <section class="pagination-section">
-                        <div class="pagination">
-                            <a th:if="${eventPageDTO.hasPreviousGroup()}"
-                               th:href="@{/event/list(page=${eventPageDTO.startPage - 1})}"
-
-                               class="page-btn prev" aria-label="Go to previous group">‹</a>
-
-                            <a class="page-btn"
-                               th:each="i : ${#numbers.sequence(eventPageDTO.startPage,eventPageDTO.endPage)}"
-                               th:href="@{/event/list(page=${i})}"
-                               th:classappend="${i == eventPageDTO ? 'active' : ''}"
-                               th:text="${i}"
-                            >1</a>
-
-                            <a th:if="${eventPageDTO.hasNextGroup()}"
-                               th:href="@{/event/list(page=${eventPageDTO.endPage + 1})}"
-
-                               class="page-btn next" aria-label="Go to next group">›</a>
-                        </div>
-                    </section>
                 </div>
-            </div>
-            <div th:insert="~{/openAiChat/open_ai_chat}"></div>
+                <div th:insert="~{/openAiChat/open_ai_chat}"></div>
         </main>
     </div>
     <footer class="footer" th:include="~{fragment/footer::footer}"></footer>

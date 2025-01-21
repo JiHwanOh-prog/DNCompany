@@ -38,6 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        form.submit();
+        document.querySelector('form').submit();
     });
 });
