@@ -23,7 +23,7 @@ public class EventBoardDTO {
     private String eventPath;
     private String eventExtension;
     private String EventRegDate;
-    private Long EventId;
+//    private Long EventId;
 
     public String getEventCreatedAt() {
         return eventCreatedAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

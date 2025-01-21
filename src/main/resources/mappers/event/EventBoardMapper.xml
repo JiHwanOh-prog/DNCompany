@@ -10,25 +10,15 @@
 <!--        VALUES (#{eventId}, #{eventTitle}, #{eventContent}, #{usersId})-->
 <!--    </insert>-->
 
-    <!--  이벤트 게시글 전체 정보  -->
-    <select id="selectAllEventBoards" resultType="EventBoardDTO">
-        SELECT EB.EVENT_ID, EB.EVENT_TITLE, EB.EVENT_CREATED_AT AS eventCreatedAt, EB.EVENT_CONTENT,
-               U.USERS_ID,
-               EI.EVENT_IMG_ID, EI.EVENT_ORIGINAL_FILENAME, EI.EVENT_UUID, EI.EVENT_PATH, EI.EVENT_EXTENSION
-        FROM EVENT_BOARD EB
-            JOIN USERS U ON EB.USERS_ID = U.USERS_ID
-            LEFT JOIN EVENT_IMG EI ON EB.EVENT_ID = EI.EVENT_ID
-        ORDER BY EVENT_ID DESC
-    </select>
-
     <!-- 이벤트 게시글 상세 정보  -->
     <select id="selectById" parameterType="long" resultType="EventBoardDetailDTO">
-        SELECT EB.EVENT_ID, EB.EVENT_TITLE, EB.EVENT_CREATED_AT AS eventCreatedAt, EB.EVENT_CONTENT,
-               U.USERS_ID,
-               EI.EVENT_IMG_ID, EI.EVENT_ORIGINAL_FILENAME, EI.EVENT_UUID, EI.EVENT_PATH, EI.EVENT_EXTENSION
+        SELECT EB.EVENT_ID, EB.EVENT_TITLE, EB.EVENT_CREATED_AT AS eventCreatedAt,
+               EB.EVENT_CONTENT, U.USERS_ID,
+               EI.EVENT_IMG_ID, EI.EVENT_ORIGINAL_FILENAME, EI.EVENT_UUID,
+               EI.EVENT_PATH, EI.EVENT_EXTENSION
         FROM EVENT_BOARD EB
-            JOIN USERS U ON EB.USERS_ID = U.USERS_ID
-            LEFT JOIN EVENT_IMG EI ON EB.EVENT_ID = EI.EVENT_ID
+                 JOIN USERS U ON EB.USERS_ID = U.USERS_ID
+                 LEFT JOIN EVENT_IMG EI ON EB.EVENT_ID = EI.EVENT_ID
         WHERE EB.EVENT_ID = #{eventId}
     </select>
 
@@ -47,7 +37,7 @@
 
     <!--  이벤트 페이징  -->
     <select id="selectByPage" resultType="EventBoardDTO">
-        SELECT RNUM, EVENT_ID, EVENT_TITLE, EVENT_CONTENT, EVENT_CREATED_AT, EVENT_UPDATE_AT,
+        SELECT RNUM, EVENT_ID AS eventId, EVENT_TITLE, EVENT_CONTENT, EVENT_CREATED_AT, EVENT_UPDATE_AT,
                USERS_ID,
                EVENT_IMG_ID, EVENT_ORIGINAL_FILENAME, EVENT_UUID, EVENT_PATH, EVENT_EXTENSION
         FROM (
@@ -75,5 +65,7 @@
         FROM EVENT_BOARD EB
         JOIN USERS U ON EB.USERS_ID = U.USERS_ID
     </select>
+
+
 
 </mapper>
