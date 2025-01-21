@@ -202,6 +202,9 @@ function messageFromPageGroup(pageDTO) {
 document.addEventListener("click", function (e) {
     const $target = e.target;
 
+    if ($target.classList.contains("title__delete__btn")) { return; }
+
+
     if ($target.closest("#messageToListContainer")) {
         const $messageItem = $target.closest(".message__info__title__user");
         if ($messageItem) {
