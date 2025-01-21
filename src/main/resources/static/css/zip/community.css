@@ -5,9 +5,32 @@
   padding: 0 27px;
 }
 
+.main__commu {
+  display: flex;
+
+  h3 {
+    display: block;
+    margin: 100px 0px 30px 70px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--main-font-color);
+    line-height: 1;
+  }
+}
+
+.main__commu__logo {
+  width: 200px;
+}
+
+.main__commu span {
+  color: var(--main-color);
+  font-family: "Ownglyph_ParkDaHyun";
+  font-size: 25px;
+}
+
+
 /* 검색 영역 */
 .community_SearchContainer {
-  margin: 100px auto;
   width: 100%;
   display: flex;
   flex-direction: column;
