@@ -279,7 +279,6 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding-top: 20px;
 }
 
 .community_loungeList {
@@ -295,6 +294,7 @@
 
 .qaList_qaListWrapper {
     padding-right: 27px;
+    padding-bottom: 15px;
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -339,7 +339,7 @@
     font-style: normal;
     font-weight: 700;
     margin-top: 18px;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 19px;
 }
 
