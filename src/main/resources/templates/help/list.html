@@ -54,15 +54,18 @@
             <!-- 게시글 목록 -->
             <div class="post-list">
                 <div class="post-card" th:each="help : ${pageDTO.list}"
-                     th:data-help-id="${help.helpId}">
+                     th:data-help-id="${help.helpId}"
+                     th:classappend="${help.isAccepted ? 'accepted' : ''}"
+                >
                     <div class="post-content">
                         <div class="post-tags">
-                            <span class="tag tag-purple" th:switch="${help.helpCareType}">
+                            <span class="tag tag-purple" th:switch="${help.helpCareType}" th:classappend="${help.isAccepted() ? 'accepted' : ''}">
                                 <th:block th:case="'walk'">산책</th:block>
                                 <th:block th:case="'hospital'">병원 동행</th:block>
                                 <th:block th:case="'daycare'">돌봄</th:block>
                                 <th:block th:case="*" th:text="${help.helpCareType}"></th:block>
                             </span>
+                            <span th:if="${help.isAccepted()}" class="tag tag-purple accepted">모집 완료</span>
                         </div>
                         <h3 class="post-title" th:text="${help.helpTitle}">우리 댕댕이 산책 도와주실 분 구해요</h3>
                         <div class="post-info">

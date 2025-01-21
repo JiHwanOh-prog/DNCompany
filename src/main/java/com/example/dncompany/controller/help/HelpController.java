@@ -107,10 +107,10 @@ public class HelpController {
         log.info("helpDetail: {}", helpDetail);
 
         // 모집 상태 확인
-        boolean isRecruiting = helpMapper.checkHelpOfferExists(helpId) > 0;
+        boolean isAccepted = helpMapper.checkHelpOfferExists(helpId) > 0;
 
         model.addAttribute("helpDetail", helpDetail);
-        model.addAttribute("isRecruiting", isRecruiting);
+        model.addAttribute("isAccepted", isAccepted);
         return "help/detail";
     }
 
