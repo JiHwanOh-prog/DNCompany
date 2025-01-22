@@ -118,6 +118,7 @@
             <button class="apply-button" th:if="${determineButtonStatus == 'CLOSED'}" disabled>돌봄 신청 마감</button>
             <button class="apply-button" th:if="${determineButtonStatus == 'APPLIED'}" disabled>이미 신청한 글</button>
             <button class="apply-button" th:if="${determineButtonStatus == 'CLOSED_AND_APPLIED'}" disabled>마감된 글 (신청 완료)</button>
+            <button class="apply-button" th:if="${determineButtonStatus == 'NOT_LOGIN'}" disabled>로그인이 필요한 서비스</button>
           </div>
           </div>
         </article>
