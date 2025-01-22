@@ -51,9 +51,9 @@ public class SmsApi {
 
         try {
 //          완전한 테스트를 위해서는 위로
-//          String verificationCode = smsService.sendVerificationCode(smsApiRequest.getPhoneNumber());
+          String verificationCode = smsService.sendVerificationCode(smsApiRequest.getPhoneNumber());
 //          가벼운 테스트 할 때는 아래로
-            String verificationCode = "123456";
+//            String verificationCode = "123456";
             log.info("인증 번호 : {}", verificationCode);
 
             session.setAttribute("smsCode", verificationCode); // 세션에 인증번호 저장
