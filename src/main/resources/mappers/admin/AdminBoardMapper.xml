@@ -3,59 +3,60 @@
 <mapper namespace="com.example.dncompany.mapper.admin.AdminBoardMapper">
     <!-- 신고 게시판 조회 -->
 <!--    프로퍼티 설정 때문에 별칭 안해도 되는데 설정 파일을 두고 왔었음-->
-    <select id="selectReportBoard" resultType="AdminReportBoardDTO">
-        SELECT r.REPORT_ID                             AS reportId,
-               '신고'                                    AS category,
-               r.REPORT_TITLE                          AS title,
-               NVL(r.REPORT_CHECK_STATUS, '없음')        AS status,
-               users_help.NAME                         AS writer,
-               users_help.EMAIL                        AS email,
-               users_help.PHONE_NUMBER                 AS phoneNumber,
-               TO_CHAR(r.REPORT_CREATED_AT, 'YYYY-MM-DD') AS createdAt
-        FROM ADMIN.REPORT r
-                 JOIN ADMIN.HELP_OFFER ho ON r.HELP_OFFER_ID = ho.HELP_OFFER_ID
-                 JOIN ADMIN.HELP_BOARD hb ON ho.HELP_ID = hb.HELP_ID
-                 JOIN ADMIN.USERS users_help ON hb.USERS_ID = users_help.USERS_ID
-    </select>
+<!--    초반에 만들던 코드들 처음에는 모두 각 mapper인터페이스 서비스 만든 후 제네릭 타입으로 각 타입에 맞게 실행처리 해놈-->
+<!--    <select id="selectReportBoard" resultType="AdminReportBoardDTO">-->
+<!--        SELECT r.REPORT_ID                             AS reportId,-->
+<!--               '신고'                                    AS category,-->
+<!--               r.REPORT_TITLE                          AS title,-->
+<!--               NVL(r.REPORT_CHECK_STATUS, '없음')        AS status,-->
+<!--               users_help.NAME                         AS writer,-->
+<!--               users_help.EMAIL                        AS email,-->
+<!--               users_help.PHONE_NUMBER                 AS phoneNumber,-->
+<!--               TO_CHAR(r.REPORT_CREATED_AT, 'YYYY-MM-DD') AS createdAt-->
+<!--        FROM ADMIN.REPORT r-->
+<!--                 JOIN ADMIN.HELP_OFFER ho ON r.HELP_OFFER_ID = ho.HELP_OFFER_ID-->
+<!--                 JOIN ADMIN.HELP_BOARD hb ON ho.HELP_ID = hb.HELP_ID-->
+<!--                 JOIN ADMIN.USERS users_help ON hb.USERS_ID = users_help.USERS_ID-->
+<!--    </select>-->
 
-    <!-- QnA 게시판 조회 -->
-    <select id="selectQnABoard" resultType="AdminQnABoardDTO">
-        SELECT q.QNA_ID                                AS qnaId,
-               'QNA'                                   AS category,
-               q.QNA_TITLE                             AS title,
-               NVL(q.QNA_CHECK_STATUS, '없음')           AS status,
-               u.NAME                                  AS writer,
-               u.EMAIL                                 AS email,
-               u.PHONE_NUMBER                          AS phoneNumber,
-               TO_CHAR(q.QNA_CREATED_AT, 'YYYY-MM-DD') AS createdAt
-        FROM ADMIN.QNA_BOARD q
-                 JOIN ADMIN.USERS u ON q.USERS_ID = u.USERS_ID
-    </select>
+<!--    &lt;!&ndash; QnA 게시판 조회 &ndash;&gt;-->
+<!--    <select id="selectQnABoard" resultType="AdminQnABoardDTO">-->
+<!--        SELECT q.QNA_ID                                AS qnaId,-->
+<!--               'QNA'                                   AS category,-->
+<!--               q.QNA_TITLE                             AS title,-->
+<!--               NVL(q.QNA_CHECK_STATUS, '없음')           AS status,-->
+<!--               u.NAME                                  AS writer,-->
+<!--               u.EMAIL                                 AS email,-->
+<!--               u.PHONE_NUMBER                          AS phoneNumber,-->
+<!--               TO_CHAR(q.QNA_CREATED_AT, 'YYYY-MM-DD') AS createdAt-->
+<!--        FROM ADMIN.QNA_BOARD q-->
+<!--                 JOIN ADMIN.USERS u ON q.USERS_ID = u.USERS_ID-->
+<!--    </select>-->
 
-    <select id="selectHelpBoard" resultType="AdminHelpBoardDTO">
-        SELECT hb.HELP_ID                                AS helpId,
-               'HELP'                                    AS category,
-               hb.HELP_TITLE                             AS title,
-               NVL(hb.HELP_CARE_TYPE, '없음')              AS careType,
-               u.NAME                                    AS writer,
-               u.EMAIL                                   AS email,
-               u.PHONE_NUMBER                            AS phoneNumber,
-               TO_CHAR(hb.HELP_CREATED_AT, 'YYYY-MM-DD') AS createdAt
-        FROM ADMIN.HELP_BOARD hb
-                 JOIN ADMIN.USERS u ON hb.USERS_ID = u.USERS_ID
-    </select>
+<!--    <select id="selectHelpBoard" resultType="AdminHelpBoardDTO">-->
+<!--        SELECT hb.HELP_ID                                AS helpId,-->
+<!--               'HELP'                                    AS category,-->
+<!--               hb.HELP_TITLE                             AS title,-->
+<!--               NVL(hb.HELP_CARE_TYPE, '없음')              AS careType,-->
+<!--               u.NAME                                    AS writer,-->
+<!--               u.EMAIL                                   AS email,-->
+<!--               u.PHONE_NUMBER                            AS phoneNumber,-->
+<!--               TO_CHAR(hb.HELP_CREATED_AT, 'YYYY-MM-DD') AS createdAt-->
+<!--        FROM ADMIN.HELP_BOARD hb-->
+<!--                 JOIN ADMIN.USERS u ON hb.USERS_ID = u.USERS_ID-->
+<!--    </select>-->
 
-    <select id="selectEventBoard" resultType="AdminEventBoardDTO">
-        SELECT eb.EVENT_ID                                AS eventId,
-               'EVENT'                                    AS category,
-               eb.EVENT_TITLE                             AS title,
-               u.NAME                                     AS writer,
-               u.EMAIL                                    AS email,
-               u.PHONE_NUMBER                             AS phoneNumber,
-               TO_CHAR(eb.EVENT_CREATED_AT, 'YYYY-MM-DD') AS createdAt
-        FROM ADMIN.EVENT_BOARD eb
-                 JOIN ADMIN.USERS u ON eb.USERS_ID = u.USERS_ID
-    </select>
+<!--    <select id="selectEventBoard" resultType="AdminEventBoardDTO">-->
+<!--        SELECT eb.EVENT_ID                                AS eventId,-->
+<!--               'EVENT'                                    AS category,-->
+<!--               eb.EVENT_TITLE                             AS title,-->
+<!--               u.NAME                                     AS writer,-->
+<!--               u.EMAIL                                    AS email,-->
+<!--               u.PHONE_NUMBER                             AS phoneNumber,-->
+<!--               TO_CHAR(eb.EVENT_CREATED_AT, 'YYYY-MM-DD') AS createdAt-->
+<!--        FROM ADMIN.EVENT_BOARD eb-->
+<!--                 JOIN ADMIN.USERS u ON eb.USERS_ID = u.USERS_ID-->
+<!--    </select>-->
 
 
     <select id="selectBoardByCondition" resultType="AdminAllBoardDTO" parameterType="BoardSearchDTO">

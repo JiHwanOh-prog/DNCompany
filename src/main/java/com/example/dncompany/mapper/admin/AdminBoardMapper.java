@@ -10,14 +10,14 @@ import java.util.Map;
 
 @Mapper
 public interface AdminBoardMapper {
-
-    List<AdminReportBoardDTO> selectReportBoard();
-
-    List<AdminQnABoardDTO> selectQnABoard();
-
-    List<AdminHelpBoardDTO> selectHelpBoard();
-
-    List<AdminEventBoardDTO> selectEventBoard();
+    // @TODO 단건 조회 초반 테스트용 삭제 예정
+//    List<AdminReportBoardDTO> selectReportBoard();
+//
+//    List<AdminQnABoardDTO> selectQnABoard();
+//
+//    List<AdminHelpBoardDTO> selectHelpBoard();
+//
+//    List<AdminEventBoardDTO> selectEventBoard();
 
 
 
