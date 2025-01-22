@@ -151,7 +151,7 @@
 .info__box__in__content__email {
     width: 100%;
     flex: 1 1 0%;
-    height: 46px;
+    height: 35px;
     border-radius: 4px;
     padding: 0px 0px 1px 15px;
     font-weight: 400;
@@ -167,7 +167,7 @@
 .info__box__email__btn__content {
     width: 100%;
     flex: 1 1 0%;
-    height: 46px;
+    height: 35px;
     border-radius: 4px;
     padding: 0px 0px 1px 15px;
     font-weight: 400;
@@ -191,8 +191,8 @@
 }
 
 .info__box__email__btn__select {
-    width: 46px;
-    height: 46px;
+    width: 35px;
+    height: 35px;
     border: none;
     border-radius: 4px;
     background-color: #fff;
@@ -227,6 +227,7 @@
     height: 18px;
     background-color: #fff;
     border: none;
+    height: 18px;
 }
 .update_profile_info__number {
     background-color: rgb(255, 255, 255);
