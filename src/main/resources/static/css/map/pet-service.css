@@ -59,10 +59,28 @@
   border-top: 2px solid #5f5f5f;
   margin: 3px 0;
 }
+
 #menu_wrap .option-wrap {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+/* option-wrap의 레이아웃 조정 */
+.option-wrap {
+  position: relative; /* 내부 요소가 부모 컨텍스트를 기준으로 정렬 */
+  display: flex; /* flexbox 레이아웃 적용 */
+  flex-wrap: wrap; /* 내부 요소가 넘치면 줄바꿈 허용 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: flex-start; /* 내부 요소를 왼쪽 정렬 */
+  gap: 10px; /* 요소 간 간격 */
+}
+
+/* option 내부 요소 스타일 */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* 입력창과 버튼 간격 */
 }
 
 #menu_wrap .option {
@@ -354,4 +372,14 @@
 
 .info-custom .link {
   color: #5085BB;
+}
+
+.desc .allowed{
+  font-size: 14px;
+  color: #4CAF50;
+}
+
+.desc .not-allowed{
+  font-size: 14px;
+  color: red;
 }

@@ -132,6 +132,12 @@ function clearMarkers() {
         marker.setMap(null);
     });
     markers = [];
+
+    // 현재 열려 있는 커스텀 오버레이 닫기
+    if (currentCustomOverlay) {
+        currentCustomOverlay.setMap(null);
+        currentCustomOverlay = null; // 열려 있는 오버레이 추적 변수 초기화
+    }
 }
 
 function displayPlaces(places) {
@@ -158,25 +164,6 @@ function displayPlaces(places) {
 
         // 마커에 클릭 이벤트를 등록하여 인포윈도우를 표시
         kakao.maps.event.addListener(marker, 'click', function () {
-            // // 기존 인포윈도우가 열려 있으면 닫기
-            // if (currentInfowindow) currentInfowindow.close();
-            //
-            // const content = `
-            //     <div class="custom-info-window">
-            //         <strong class="store-name">${location.store_name}</strong><br>
-            //         <span class="address">주소: ${location.address_road_name}</span><br>
-            //         <span class="phone">${location.phone_number || "전화번호 없음"}</span>
-            //     </div>
-            // `;
-            //
-            // const infowindow = new kakao.maps.InfoWindow({
-            //     content: content,
-            //     removable: true
-            // });
-            // infowindow.open(map, marker);
-            // currentInfowindow = infowindow;  // 열린 인포윈도우 추적
-            // // 마커 클릭 시 해당 마커의 위치로 지도 중심 이동
-            // map.setCenter(markerPosition);
 
             // 기존 커스텀 오버레이가 열려 있으면 닫기
             if (currentCustomOverlay) currentCustomOverlay.setMap(null);
@@ -192,7 +179,10 @@ function displayPlaces(places) {
                             <div class="desc">
                                 <div class="ellipsis">주소 : ${location.address_road_name}</div>
                                 <div class="jibun ellipsis">지번 : ${location.address_jibun_name}</div>
-                                <span class="phone">${location.phone_number || "전화번호 없음"}</span>
+                                <span class="phone">${location.phone_number || "전화번호 없음"} |</span>
+                                <span class="pet-info ${location.pets_allowed_info === 'Y' ? 'allowed' : 'not-allowed'}">
+                                ${location.pets_allowed_info === 'Y' ? "반려동물 출입 가능" : "반려동물 출입 불가능"}
+                                </span>
                                 <div>
                                     <a href="${location.homepage_url !== '정보없음' ? location.homepage_url : '#'}" 
                                        target="${location.homepage_url !== '정보없음' ? '_blank' : '_self'}" 
@@ -205,7 +195,6 @@ function displayPlaces(places) {
                         </div>
                     </div>
                 </div>`;
-
             // 닫기 버튼에 클릭 이벤트 추가
             const closeBtn = customContent.querySelector(".close");
             closeBtn.addEventListener("click", function () {
@@ -305,9 +294,44 @@ petServiceMapApi(function (mapApi) {
 
         if (filteredData.length === 0) {
             alert("검색 결과가 없습니다.");
+
+            // 지도에서 모든 마커 제거 및 인포윈도우 닫기
+            clearMarkers();
         } else {
-            // 검색된 장소를 지도에 표시
-            displayPlaces(filteredData);
+            // 검색된 데이터로 pagination 갱신
+            pagination.current = 1; // 검색 결과는 항상 첫 페이지로 시작
+            pagination.last = Math.ceil(filteredData.length / pagination.perPage);
+
+            // 검색된 데이터에 따라 페이징 처리된 장소 표시
+            const start = (pagination.current - 1) * pagination.perPage;
+            const end = start + pagination.perPage;
+            const paginatedData = filteredData.slice(start, end);
+
+            // 지도와 리스트 갱신
+            displayPlaces(paginatedData);
+            displayPagination(pagination);
+
+            // 검색된 첫 번째 장소의 마커를 클릭하고 지도 이동
+            const firstPlace = filteredData[0]; // 첫 번째 장소 가져오기
+            const markerKey = `${firstPlace.lat},${firstPlace.lng}`; // 고유 키 생성
+            const marker = markers.find(marker => {
+                const markerLatLng = marker.getPosition();
+                return (
+                    Math.abs(markerLatLng.getLat() - firstPlace.lat) < 0.00001 && // 위도 비교
+                    Math.abs(markerLatLng.getLng() - firstPlace.lng) < 0.00001    // 경도 비교
+                );
+                });
+
+            if (marker) {
+                kakao.maps.event.trigger(marker, "click"); // 첫 번째 마커의 클릭 이벤트 트리거
+                map.setCenter(marker.getPosition()); // 첫 번째 마커 위치로 지도 중심 이동
+            } else {
+                console.error("First place's marker not found:", firstPlace);
+            }
+
+            // `fetchPlaces`와 같은 구조를 유지하기 위해
+            // 필터링된 데이터를 저장하거나 콜백으로 사용하도록 수정 가능
+            window.filteredPlaces = filteredData; // 전역 변수로 저장 (선택적)
         }
     }
     // searchPlaces를 전역으로 노출
