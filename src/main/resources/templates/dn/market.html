@@ -44,7 +44,6 @@
                                 </div>
                             </form>
 
-
                             <!-- 동물 분류 -->
                             <div class="category_box">
                             <div class="shopLayout_animalLabelContainer">
@@ -82,12 +81,12 @@
                         <!-- 정렬 -->
                         <div class="shopping_productFilterContainer">
                           <span class="shopping_productFilterList">
-                            <input class="radio_myRadio" type="radio" id="popular-order" name="productFilter" value="popular-order" th:checked="${'popular-order'.equals(searchDTO.order)}"/>
-                            <label for="popular-order">인기순</label>
+                            <input class="radio_myRadio" type="radio" id="last-order" name="productFilter" value="last-order" th:checked="${searchDTO.order == null or searchDTO.order.isEmpty() or 'last-order'.equals(searchDTO.order)}"/>
+                            <label for="last-order">최신순</label>
                           </span>
                           <span class="shopping_productFilterList">
-                            <input class="radio_myRadio" type="radio" id="last-order" name="productFilter" value="last-order" th:checked="${'last_order'.equals(searchDTO.order)}"/>
-                            <label for="last-order">최신순</label>
+                            <input class="radio_myRadio" type="radio" id="popular-order" name="productFilter" value="popular-order" th:checked="${'popular-order'.equals(searchDTO.order)}"/>
+                            <label for="popular-order">인기순</label>
                           </span>
                           <span class="shopping_productFilterList">
                             <input class="radio_myRadio" type="radio" id="price-desc-order" name="productFilter" value="price-desc-order" th:checked="${'price-desc-order'.equals(searchDTO.order)}"/>

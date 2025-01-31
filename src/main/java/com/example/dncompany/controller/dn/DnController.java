@@ -25,27 +25,11 @@ public class DnController {
     @GetMapping("/market")
     public String market(DnSearchDTO searchDTO ,PageRequestDTO pageRequestDTO, Model model) {
 
-//        if (searchDTO.getSearchType() == null){
-//            searchDTO.setSearchType("title");
-//        }
-//        if (searchDTO.getKeyword() == null){
-//            searchDTO.setKeyword("");
-//        }
-//        if (searchDTO.getOrder() == null){
-//            searchDTO.setOrder("late-date");
-//        }
-//        if (searchDTO.getDnPetCategory() == null){
-//            searchDTO.setDnPetCategory("");
-//        }
-//        if (searchDTO.getProductCategory() == null){
-//            searchDTO.setProductCategory("");
-//        }
 
-//        List<DnBoardListDTO> dnBoardList = dnBoardService.getDnBoardList();
         PageDTO<DnBoardListDTO> pageDTO = dnBoardService.getDnBoardsBySearchCondWithPage(pageRequestDTO, searchDTO);
+
         model.addAttribute("pageDTO", pageDTO);
         model.addAttribute("searchDTO", searchDTO);
-//        model.addAttribute("dnBoard", dnBoardList);
 
         return "dn/market";
     }
